@@ -32,7 +32,7 @@ li {
   text-shadow: 1px 1px #000;
 }
 .logo {
-  width: 2.5%;
+  width: 3%;
   height: auto;
   box-shadow: 0 9px 9px -2px rgba(0, 0, 0, 0.3);
 }
@@ -173,6 +173,10 @@ input {
  width: 100%;
  height: 3em;
  text-align: center;
+}
+.img-resize{
+  width: 50%;
+  height: auto;
 }
 footer {
   background-image: linear-gradient(62deg, #aba8a9 0%, #d8dfee 100%);
