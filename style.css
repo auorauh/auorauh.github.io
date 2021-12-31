@@ -73,7 +73,7 @@ h1 {
   flex-direction: column-reverse;
   margin: 0 10%;
 }
-.fl1 {
+.fl {
   display: flex;
   width: 334px;
   height: 32px;
@@ -93,7 +93,7 @@ h1 {
 .fl3:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/7YY1Pz58/3.jpg") no-repeat;
+  background: url("https://i.postimg.cc/yYKLQDrC/3.jpg") no-repeat;
 }
 .fl4:hover {
   width: 334px;
