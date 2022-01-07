@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
-    <meta http-equiv="Content-Security-Policy"
+    <meta http-equiv="Content-Security-Policy: default-src 'none';
+    frame-src youtube.com www.youtube.com;
+    report-uri /tst/csp.php?hash=57c1a7c1d810eb97e1b68c998ff3416a"
       content="default-src 'self'; img-src https://*; child-src 'none';">
     <title>64 Floors Project</title>
     <link rel="stylesheet" href="style.css">
@@ -57,7 +58,7 @@
         </div>
       </div>
       <div class="about">
-        <h2><u>What is 64 Floors</u></h2>
+        <h2><u>What is 64 Floors</u></h2> 
         <section id="video">
           <iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/7_a1lJ-Ayww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
