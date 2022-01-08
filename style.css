@@ -77,33 +77,33 @@ h1 {
   display: flex;
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/8cvFK15H/lightsout.jpg") no-repeat;
+  background: url("Floors/lightsout.jpg") no-repeat;
 }
 /* floor hover properties */
 .fl1:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/HL8TyP7X/oneline.jpg") no-repeat;
+  background: url("Floors/1.jpg") no-repeat;
 }
 .fl2:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/5NYcrXf1/2.jpg") no-repeat;
+  background: url("Floors/2.jpg") no-repeat;
 }
 .fl3:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/yYKLQDrC/3.jpg") no-repeat;
+  background: url("Floors/3.jpg") no-repeat;
 }
 .fl4:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/9fTZgtnT/4.jpg") no-repeat;
+  background: url("Floors/4.jpg") no-repeat;
 }
 .fl5:hover {
   width: 334px;
   height: 32px;
-  background: url("https://i.postimg.cc/8ckv58PB/5.jpg") no-repeat;
+  background: url("Floors/5.jpg") no-repeat;
 }
 .about {
   text-align: center;
