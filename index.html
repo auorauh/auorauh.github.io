@@ -4,121 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self';frame-src youtube.com https://www.youtube.com;">
-    <title>64 Floors Project</title>
-    <link rel="icon" href="images/150x150-64.png">
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; frame-src youtube.com https://www.youtube.com;">
+    <title>64Floors</title>
+    <script type="text/javascript" src="index.js" defer></script>
+    <link rel="icon" href="#">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <nav class="navbar">
-      <img alt="logo" class="logo" src="images/logo.png">
-      <ul class="nav-links">
-        <li> <a target="_blank" href="https://www.youtube.com/channel/UCCKK2rl1z9RNO2-DK_W7Ejw/featured"> Youtube</a>
-        </li>
-        <li> <a target="_blank" href="https://open.spotify.com/artist/1dWzfUBtQJYZWEMHiMz4K5"> Music</a>
-        </li>
-        <li> <a target="_blank" href="https://www.instagram.com/64floors/"> Art</a>
-        </li>
-        <li> <a href="#"> Contact</a>
-        </li>
-      </ul>
-    </nav>
-    <div id="container">
+    <nav>
+      <div id="navSide" class="sidenav">
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+      </div>
+ </nav>
+    <div class="container">
       <div class="landing">
-        <h1>64 Floors Project</h1>
-        <img id="buildingimg" alt="building" src="images/toonBuilding.jpg">
+        <img class="master" src="images/Master.png">
+        <br>
+        <br>
+        <h1><span class="flip">&#8628;</span>&nbsp;SCROLL DOWN &#8628;</h1>
       </div>
-      <div class="floors">
-        <h2>Completed Floors</h2>
-        <div class="floorctrl">
-          <a href="Floors/fl1.html">
-            <div class="fl fl1">
+    <div class="main">
+      <div class="subnav">
+        <div class="navitem">Portfolio</div>
+        <div class="navitem">Instagram</div>
+        <div class="navitem">YouTube</div>
+        <div class="navitem">Art Gallery</div>
+        <div class="navitem">Contact</div>
+      </div>
+      <div  class="menuIcon">
+        <input type="checkbox" id="checkbox1" class="checkbox1 visuallyHidden">
+        <label for="checkbox1">
+            <div id="openNav" class="hamburger hamburger1">
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
+                <span class="bar bar4"></span>
             </div>
-          </a>
-          <a href="Floors/fl2.html">
-            <div class="fl fl2">
-            </div>
-          </a>
-          <a href="Floors/fl3.html">
-            <div class="fl fl3">
-            </div>
-          </a>
-          <!--
-          <a href="#">
-            <div class="fl1 fl4">
-            </div>
-          </a>
-          <a href="#">
-            <div class="fl1 fl5">
-            </div>
-          </a> 
-        -->
+        </label>
+      </div>
+      <div class="content">
+        <div class="banner">
+          <img class="flBanner" src="images/fl4.png">
+          <img class="flBanner" src="images/fl3.png">
         </div>
       </div>
-      <div class="about">
-        <h2><u>What is 64 Floors</u></h2> 
-        <section id="video">
-          <iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/7_a1lJ-Ayww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </section>
-        <div class="explain">
-          <p>The whole idea behind 64 Floors is ‘leveling up.’ Each floor in the building will portray a different creative project that I have been  working on. I see myself walking through this building, watching myself grow and develop creatively as I make more and more content. The idea is that you need the first floor to get to the second, and the floors build on each other. Eventually, I will have so many creative projects where I will have pushed my boundaries and do things I would never expect to do. Whether that’s creating a website, doing a choreographed dance, or so many other exciting things I have coming.
-            <br> <br>
-            The reason I started 64 Floors is because I was working a 9-5 job that was leaving me unfulfilled. I wanted to see myself do something meaningful, creative, and just watch myself grow. I love being creative, it’s something that truly makes me happy in life. So follow me along the way and watch my art and myself develop! 
-          </p>
-          <br>
-          <div id="survey">
-            <form>
-              <h3>Contact Me</h3>
-              <label for="name">Name</label>
-              <input type="text" name="name" id="name" placeholder="Enter Name Here" required>
-              <label class="form-group" for="email">Email</label>
-              <input type="email" name="email" id="email" placeholder="Enter Email Here" required>
-              <label class="form-group" for="age">Age</label>
-              <input type="number" name="age" id="age" min="1" max="150" placeholder="Age" required>
-              <div>
-                <h4>How did you hear about me?</h4>
-                <select id="dropdown" name="relationship" required>
-                  <option disable selected value>Relationship</option>
-                  <option value="youtube">YouTube</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="inperson">In Person</option>
-                  <option value="other">Other
-                  </option>
-                </select>
-              </div>
-    
-              <h4>What are you intrested in?</h4>
-              <div id="radio">
-                <label for="art">
-                  <input name="art" type="checkbox" value="art" class="input-checkbox"> Art</label>
-                <label for="music">
-                  <input name="music" type="checkbox" value="music" class="input-checkbox">
-                  Music</label>
-                <label for="merch">
-                  <input name="merch" type="checkbox" value="merch" class="input-checkbox">
-                  Merch</label>
-                <label for="content">
-                  <input name="content" type="checkbox" value="content" class="input-checkbox">
-                  Content</label>
-              </div>
-              <div class="form-group">
-                <h4>Comments or suggestions?</h4>
-                <textarea placeholder="Enter Your Comments Here" class="textarea" required></textarea>
-              </div>
-              <div>
-                <button type="submit"> Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
       </div>
-    </div>
-    <footer>
-      <div class="end">
-        2021 - 64 Floors LLC | Content Creation - UT
-      </div>
-    </footer>
+</div>
+<footer>
+  <div class="footerCont">
+  <div class="footLinks">
+    <a target="_blank" href="https://www.youtube.com/channel/UCCKK2rl1z9RNO2-DK_W7Ejw">
+      <img class="foot-icon" src="images/yt.png"></a>
+    <a target="_blank" href="https://www.instagram.com/64floors/">
+    <img class="foot-icon" src="images/ig.png"></a>
+  </div>
+</div>
+  <div class="rights">
+  <strong>&copy; 64Floors All Rights Reserved 2022</strong></div>
+</footer>
   </body>
 </html>
