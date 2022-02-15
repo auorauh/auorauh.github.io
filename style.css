@@ -91,6 +91,13 @@ body {
     transition: 0.5s;
     padding-top: 100px;
   }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #791be4;
+  }
   .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -162,7 +169,7 @@ body {
     align-items: center;
     height: 3.5em;
     width: 100%;
-    border: 1px solid rgb(207, 2, 207);
+    border:1px solid #791be4;
     font-size: 1.25rem;
     background-color: black;
   }
@@ -182,6 +189,15 @@ body {
   }
   .flBanner {
     width: 100%;
+  }
+  /* start gallery */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .art {
+    max-height: 10%;
+    max-width: 10%;
   }
   /* start footer */
   footer {
