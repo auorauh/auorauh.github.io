@@ -33,7 +33,6 @@ let colorSelect = document.querySelectorAll('.navitem');
 colorSelect.forEach(item => {
    item.addEventListener('mouseover', function(){
       let hoverColor = (Math.floor(Math.random() * 7))+1;
-      console.log(hoverColor);
    if (hoverColor == 1) {
       hoverColor = "linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)";
       item.style.backgroundImage = hoverColor;
@@ -62,3 +61,24 @@ colorSelect.forEach(item => {
    })
 })
 let single = document.querySelector('.navitem');
+(function() {
+   const root = document.documentElement;
+   const newTheme = root.className === 'indigo' ? 'indigo' : 'indigo';
+   root.className = newTheme;
+ })()
+
+ let colors = document.querySelectorAll('.color')
+  colors= Array.from(colors);
+  console.log(colors)
+  for (i=0;i<colors.length;i++){
+   let child = colors[i];
+   child.addEventListener('click',function(){
+      setTheme(child)
+   })
+  }
+  function setTheme(child) {
+   const root = document.documentElement;
+   console.log(child)
+   const newTheme = root.className === 'indigo' ? child['id'] : child['id'];
+   root.className = newTheme;
+ }
