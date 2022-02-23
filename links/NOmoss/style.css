@@ -148,15 +148,6 @@ h1 {
 
 }
 /* Main */
-.landImg {
-   background-image: url(images/main.jpg);
-   height:100%;
-   width:100%;
-   position: absolute;
-   background-repeat: no-repeat;
-   z-index: -10;
-   top: 3.75rem;
-}
 .hero {
 	position: relative;
 	height: 100%;
@@ -173,7 +164,7 @@ h1 {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: url(Images/main.png);
+	background-image: url(Images/main.png);
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
