@@ -204,6 +204,7 @@ h2 {
    background-color: rgb(26, 26, 26);
    margin: 5rem;
    display: flex;
+   object-fit: contain;
 }
 .aboutCont {
    display: flex;
@@ -407,10 +408,6 @@ p, h5{
    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
    width: fill-available;
    block-size: auto;
-   height: 100%;
-   height: -moz-available;          /* WebKit-based browsers will ignore this. */
-   height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-   height: fill-available;
  }
  @media screen and (max-width: 900px) {
     .left {
@@ -442,10 +439,13 @@ p, h5{
       margin: 2rem;
       text-align: center;
       justify-content: center;
-   align-items: center;
+      align-items: center;
    }
    .aboutCont {
       padding: 0 2rem;
+   }
+   .about img {
+      width: 90%;
    }
    .aboutCont p {
       margin: 0;
