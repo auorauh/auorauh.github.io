@@ -173,7 +173,7 @@ h1 {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: url(images/main.png);
+	background: url(Images/main.png);
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -267,7 +267,7 @@ h4 {
    display: flex;
    justify-content: center;
    align-items: center;
-   background-image: url(images/review.png);
+   background-image: url(Images/review.png);
    background-position: center;
    background-size: contain;
    background-repeat: no-repeat;
@@ -359,7 +359,7 @@ p, h5{
  .contactForm {
     width: 100%;
     height: 80vh;
-    background-image: url(images/cont.png);
+    background-image: url(Images/cont.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
