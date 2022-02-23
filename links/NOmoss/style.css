@@ -402,6 +402,9 @@ p, h5{
    background-color: rgb(26, 26, 26);
  }
  img {
+   max-inline-size: -moz-available;          /* WebKit-based browsers will ignore this. */
+   max-inline-size: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+   max-inline-size: fill-available;
    max-inline-size: 100%;
    block-size: auto;
  }
