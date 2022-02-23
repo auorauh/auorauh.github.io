@@ -402,9 +402,11 @@ p, h5{
    background-color: rgb(26, 26, 26);
  }
  img {
-   max-inline-size: 100%;
+   width: 100%;
+   width: -moz-available;          /* WebKit-based browsers will ignore this. */
+   width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+   width: fill-available;
    block-size: auto;
-   height: 25%;
  }
  @media screen and (max-width: 900px) {
     .left {
