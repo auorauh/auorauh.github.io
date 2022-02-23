@@ -204,7 +204,6 @@ h2 {
    background-color: rgb(26, 26, 26);
    margin: 5rem;
    display: flex;
-   object-fit: contain;
 }
 .aboutCont {
    display: flex;
@@ -403,10 +402,7 @@ p, h5{
    background-color: rgb(26, 26, 26);
  }
  img {
-   width: 100%;
-   width: -moz-available;          /* WebKit-based browsers will ignore this. */
-   width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-   width: fill-available;
+   max-inline-size: 100%;
    block-size: auto;
  }
  @media screen and (max-width: 900px) {
@@ -439,13 +435,10 @@ p, h5{
       margin: 2rem;
       text-align: center;
       justify-content: center;
-      align-items: center;
+   align-items: center;
    }
    .aboutCont {
       padding: 0 2rem;
-   }
-   .about img {
-      width: 90%;
    }
    .aboutCont p {
       margin: 0;
