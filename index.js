@@ -17,9 +17,6 @@ function openNav() {
    menu.replaceWith(menu.cloneNode(true));
    addOpen();
  }
-function removed() {
-   console.log('removed')
-}
 function addClose() {
    let closed = document.querySelector('#xBtn');
    closed.addEventListener('click', closeNav);
