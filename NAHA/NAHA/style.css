@@ -106,6 +106,7 @@ nav {
 	margin-bottom: 1rem;
 	color: white;
 	text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+	box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
 	z-index: 2;
 	position: absolute;
 }
@@ -139,7 +140,7 @@ nav a:visited {
 	padding-left: 10rem;
 	font-size: 1.5rem;	
 }
-ul {
+nav ul {
 	display: flex;
 	gap: 3rem;
 }
@@ -166,7 +167,10 @@ ul {
 .link:hover::after {
 	transform: scale(1);
 }
-
+.intro {
+	padding: 0 5rem 50px 5rem;
+	text-align: center;
+}
 main {
 	max-width: 1200px;
 	margin: auto;
@@ -192,6 +196,8 @@ main {
 	border-radius: 2px;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 	background-color: white;
+	display: inline-block; /* shrink wrap to image */
+   overflow: hidden;
  }
  
  .card:hover {
@@ -203,7 +209,6 @@ main {
 	margin-bottom: 10px;
 	height: auto;
  }
- 
  .card h3 {
 	color: #22577a;
  }
@@ -213,10 +218,25 @@ main {
 	line-height: 1.5;
 	padding-top: 10px;
  }
+h4 {
+	color: rgb(22,54,103);
+}
+.card li {
+	font-size: .85rem;
+}
+.zoom {
+    transition: .3s ease-in-out;
+ }
+ .zoom:hover {
+	-ms-transform: scale(1.1); /* IE 9 */
+	-webkit-transform: scale(1.1); /* Safari 3-8 */
+	transform: scale(1.1); 
+ }
  footer{
 	 background: rgb(22,54,103);
 	 background: linear-gradient(150deg, rgba(22,54,103,1) 0%, rgba(28,70,133,1) 50%, rgba(22,54,103,1) 100%);
 	 height: 3rem;
+	 color: #eee;
 	 display: flex;
 	 justify-content: flex-end;
 	 align-items: center;
@@ -225,7 +245,7 @@ main {
  }
  
  @media screen and (max-width: 900px) {
-	 ul {
+	 nav ul {
 		 gap: 10px;
 		 flex-direction: column;
 	 }
@@ -235,6 +255,9 @@ main {
 	 }
 	 .content {
 		 padding: 0 5%;
+	 }
+	 .intro {
+		 padding: 0 0 50px 0;
 	 }
 	 footer {
 		 padding: 0;
