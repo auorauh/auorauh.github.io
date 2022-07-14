@@ -31,25 +31,25 @@ colorSelect.forEach(item => {
    item.addEventListener('mouseover', function(){
       let hoverColor = (Math.floor(Math.random() * 7))+1;
    if (hoverColor == 1) {
-      hoverColor = "linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)";
+      hoverColor = "linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(255,104,104,1) 100%)";
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 2) {
-      hoverColor = "linear-gradient(to top, #f6d365 0%, #fda085 100%)";
+      hoverColor = "linear-gradient(180deg, rgba(255,198,104,1) 0%, rgba(255,159,0,1) 100%)";
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 3) {
-      hoverColor = "linear-gradient(to top, #f83600 0%, #f9d423 100%)";
+      hoverColor = "linear-gradient(180deg, rgba(254,255,229,1) 0%, rgba(245,255,0,1) 100%)";
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 4) {
-      hoverColor = "linear-gradient(to top, #84fab0 0%, #8fd3f4 100%)"
+      hoverColor = "linear-gradient(180deg, rgba(191,255,187,1) 0%, rgba(12,177,0,1) 100%)"
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 5) {
-      hoverColor = "linear-gradient(to top, #a1c4fd 0%, #c2e9fb 100%)"
+      hoverColor = "linear-gradient(180deg, rgba(0,185,255,1) 0%, rgba(124,219,255,1) 100%)"
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 6) {
-      hoverColor = "linear-gradient(to top, #6a11cb 0%, #2575fc 100%)"
+      hoverColor = "linear-gradient(180deg, rgba(106,114,255,1) 0%, rgba(0,14,255,1) 100%)"
       item.style.backgroundImage = hoverColor;
    } else if (hoverColor == 7) {
-      hoverColor = "linear-gradient(to top, #ff0844 0%, #ffb199 100%)"
+      hoverColor = "linear-gradient(0deg, rgba(127,0,181,1) 0%, rgba(195,55,255,1) 100%)"
       item.style.backgroundImage = hoverColor;
    }
    });
