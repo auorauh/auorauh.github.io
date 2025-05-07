@@ -1,7 +1,7 @@
 {
   "name": "64floors",
   "version": "0.1.0",
-  "homepage": "https://auorauh.github.io/auorauh.github.io",
+  "homepage": "https://64floors.com",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

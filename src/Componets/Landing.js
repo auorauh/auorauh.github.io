@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Landing.css';
 import { Link } from 'react-router-dom';
-import floor3 from '../Assets/floor3.png';
-import floor4 from '../Assets/floor4.png';
-import floor5 from '../Assets/floor5.png';
-import floor6 from '../Assets/floor6.png';
 
 import { floorListData } from '../floorListData';
 
@@ -12,7 +8,7 @@ function Landing() {
   const images = [floorListData[0].imagePath, floorListData[1].imagePath, floorListData[2].imagePath, floorListData[3].imagePath, floorListData[4].imagePath, floorListData[5].imagePath,floorListData[6].imagePath,floorListData[7].imagePath];
   const initialRadii = [
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
-    { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
+    { topLeft: 0, topRight: 0, bottomLeft: 0, bottomRight: 0 },
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 }
@@ -29,23 +25,26 @@ function Landing() {
   }, [images.length]);
 
   useEffect(() => {
-    const frequencies = [1.1, 0.6, 0.7, 0.8, 0.9];
+    const frequencies = [1.1, 1, 0.7, 0.8, 0.9];
     const startTime = Date.now();
+    let animationFrameId;
 
-    const interval = setInterval(() => {
-      const elapsedTime = Date.now() - startTime;
-      const timeFactor = elapsedTime / 1000;
-
-setBorderRadii(prevRadii => prevRadii.map((radius, index) => ({
-  topLeft: 10 + 4 * Math.sin(frequencies[index] * timeFactor + 0),
-  topRight: 10 + 4 * Math.sin(frequencies[index] * timeFactor + 1),
-  bottomLeft: 10 + 4 * Math.sin(frequencies[index] * timeFactor + 2),
-  bottomRight: 10 + 4 * Math.sin(frequencies[index] * timeFactor + 3),
-})));
-
-    }, 50);
-
-    return () => clearInterval(interval);
+    const animate = () => {
+      const elapsedTime = (Date.now() - startTime) / 1000;
+  
+      setBorderRadii(prevRadii => prevRadii.map((_, index) => ({
+        topLeft: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 0),
+        topRight: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 1),
+        bottomLeft: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 2),
+        bottomRight: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 3),
+      })));
+  
+      animationFrameId = requestAnimationFrame(animate);
+    };
+  
+    animate();
+  
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   return (
@@ -65,10 +64,10 @@ setBorderRadii(prevRadii => prevRadii.map((radius, index) => ({
           <div
             className="boxTwo"
             style={{
-              borderTopLeftRadius: `${borderRadii[1].topLeft - 10}%`,
-              borderTopRightRadius: `${borderRadii[1].topRight - 10}%`,
-              borderBottomLeftRadius: `${borderRadii[1].bottomLeft - 10}%`,
-              borderBottomRightRadius: `${borderRadii[1].bottomRight - 10}%`,
+              // borderTopLeftRadius: `${borderRadii[1].topLeft}%`,
+              // borderTopRightRadius: `${borderRadii[1].topRight}%`,
+              // borderBottomLeftRadius: `${borderRadii[1].bottomLeft}%`,
+              // borderBottomRightRadius: `${borderRadii[1].bottomRight -5}%`,
             }}
           >
           </div>

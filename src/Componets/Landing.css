@@ -54,6 +54,7 @@
   background-position: center;
   background-size:contain;
   background-repeat: no-repeat;
+  border-radius: 15px;
  }
 .boxThree { 
   flex: 1;
@@ -135,16 +136,26 @@
       overflow:hidden;
     }
     .row {
-      flex-direction: column;
+      height: 30vh
     }
     .rowTwo {
       flex-direction: column;
     }
+    .boxOne {
+      flex: 2
+
+    }
     .boxThree {
       flex: 3;
     }
+    .fourText {
+      font-size: 70px;
+      z-index: 2;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.747);
+     }
     .boxFive {
       text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 }
 
