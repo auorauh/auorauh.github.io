@@ -7,7 +7,7 @@ import { floorListData } from '../floorListData';
 function Landing() {
   const images = [floorListData[0].imagePath, floorListData[1].imagePath, floorListData[2].imagePath, floorListData[3].imagePath, floorListData[4].imagePath, floorListData[5].imagePath,floorListData[6].imagePath,floorListData[7].imagePath];
   const initialRadii = [
-    { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
+    { topLeft: 0, topRight: 0, bottomLeft: 0, bottomRight: 0 },
     { topLeft: 0, topRight: 0, bottomLeft: 0, bottomRight: 0 },
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
     { topLeft: 30, topRight: 30, bottomLeft: 30, bottomRight: 30 },
@@ -24,20 +24,40 @@ function Landing() {
     return () => clearInterval(interval);
   }, [images.length]);
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // adjust breakpoint as needed
+
   useEffect(() => {
-    const frequencies = [1.1, 1, 0.7, 0.8, 0.9];
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
+
+  useEffect(() => {
+    const frequencies = [1, 2, 1.5, .75, 1.8]; // slower, smoother wave
     const startTime = Date.now();
     let animationFrameId;
-
+  
     const animate = () => {
       const elapsedTime = (Date.now() - startTime) / 1000;
   
-      setBorderRadii(prevRadii => prevRadii.map((_, index) => ({
-        topLeft: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 0),
-        topRight: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 1),
-        bottomLeft: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 2),
-        bottomRight: 10 + 4 * Math.sin(frequencies[index] * elapsedTime + 3),
-      })));
+      setBorderRadii(prevRadii =>
+        prevRadii.map((_, index) => {
+          const wave = (offset) =>
+            (useIsMobile ? 35 : 85) + 15 * Math.sin(frequencies[index] * elapsedTime + offset); // range 20–150
+  
+          return {
+            topLeft: wave(0),
+            topRight: wave(1),
+            bottomLeft: wave(2),
+            bottomRight: wave(3),
+          };
+        })
+      );
   
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -46,6 +66,7 @@ function Landing() {
   
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
+  
 
   return (
     <>
@@ -54,30 +75,30 @@ function Landing() {
           <div
             className="boxOne"
             style={{
-              borderTopLeftRadius: `${borderRadii[0].topLeft}%`,
-              borderTopRightRadius: `${borderRadii[0].topRight}%`,
-              borderBottomLeftRadius: `${borderRadii[0].bottomLeft}%`,
-              borderBottomRightRadius: `${borderRadii[0].bottomRight}%`,
+              borderTopLeftRadius: `${borderRadii[0].topLeft}px`,
+              borderTopRightRadius: `${borderRadii[0].topRight}px`,
+              borderBottomLeftRadius: `${borderRadii[0].bottomLeft}px`,
+              borderBottomRightRadius: `${borderRadii[0].bottomRight}px`,
             }}>
               <div className="logo"></div>
           </div>
           <div
             className="boxTwo"
             style={{
-              // borderTopLeftRadius: `${borderRadii[1].topLeft}%`,
-              // borderTopRightRadius: `${borderRadii[1].topRight}%`,
-              // borderBottomLeftRadius: `${borderRadii[1].bottomLeft}%`,
-              // borderBottomRightRadius: `${borderRadii[1].bottomRight -5}%`,
+              borderTopLeftRadius: `${borderRadii[1].topLeft}px`,
+              borderTopRightRadius: `${borderRadii[1].topRight}px`,
+              borderBottomLeftRadius: `${borderRadii[1].bottomLeft}px`,
+              borderBottomRightRadius: `${borderRadii[1].bottomRight}px`,
             }}
           >
           </div>
           <div
             className="boxThree"
             style={{
-              borderTopLeftRadius: `${borderRadii[2].topLeft}%`,
-              borderTopRightRadius: `${borderRadii[2].topRight}%`,
-              borderBottomLeftRadius: `${borderRadii[2].bottomLeft}%`,
-              borderBottomRightRadius: `${borderRadii[2].bottomRight}%`,
+              borderTopLeftRadius: `${borderRadii[2].topLeft}px`,
+              borderTopRightRadius: `${borderRadii[2].topRight}px`,
+              borderBottomLeftRadius: `${borderRadii[2].bottomLeft}px`,
+              borderBottomRightRadius: `${borderRadii[2].bottomRight}px`,
             }}
           >
           </div>
@@ -87,14 +108,22 @@ function Landing() {
       to="https://www.instagram.com/64floors/"
       className="boxFour"
       style={{
-        //backgroundImage: `url(${images[slideshowPhoto]})`,
-        borderTopLeftRadius: `${borderRadii[3].topLeft}%`,
-        borderTopRightRadius: `${borderRadii[3].topRight}%`,
-        borderBottomLeftRadius: `${borderRadii[3].bottomLeft}%`,
-        borderBottomRightRadius: `${borderRadii[3].bottomRight}%`,
+        borderTopLeftRadius: `${borderRadii[3].topLeft}px`,
+        borderTopRightRadius: `${borderRadii[3].topRight}px`,
+        borderBottomLeftRadius: `${borderRadii[3].bottomLeft}px`,
+        borderBottomRightRadius: `${borderRadii[3].bottomRight}px`,
       }}
     >
       <div className="fourText">All Floors</div>
+      <div className="fourCard">
+        <div className="cardWindow" style={{
+        borderTopLeftRadius: `${borderRadii[3].topLeft}px`,
+        borderTopRightRadius: `${borderRadii[3].topRight}px`,
+        borderBottomLeftRadius: `${borderRadii[3].bottomLeft}px`,
+        borderBottomRightRadius: `${borderRadii[3].bottomRight}px`,
+      }}>
+          </div>
+          <div className="cardDesc"></div> </div>
       <div
         className="fourBg"
         style={{
@@ -106,12 +135,22 @@ function Landing() {
           to="/current"
             className="boxFive"
             style={{
-              borderTopLeftRadius: `${borderRadii[4].topLeft}%`,
-              borderTopRightRadius: `${borderRadii[4].topRight}%`,
-              borderBottomLeftRadius: `${borderRadii[4].bottomLeft}%`,
-              borderBottomRightRadius: `${borderRadii[4].bottomRight}%`,
+              borderTopLeftRadius: `${borderRadii[4].topLeft}px`,
+              borderTopRightRadius: `${borderRadii[4].topRight}px`,
+              borderBottomLeftRadius: `${borderRadii[4].bottomLeft}px`,
+              borderBottomRightRadius: `${borderRadii[4].bottomRight}px`,
             }}>
             <div className='fiveText'>Current Floor</div>
+            <div className="fiveCard">
+        <div className="cardWindow" style={{
+        //backgroundImage: `url(${images[slideshowPhoto]})`,
+        borderTopLeftRadius: `${borderRadii[4].topLeft}px`,
+        borderTopRightRadius: `${borderRadii[4].topRight}px`,
+        borderBottomLeftRadius: `${borderRadii[4].bottomLeft}px`,
+        borderBottomRightRadius: `${borderRadii[4].bottomRight}px`,
+      }}>
+          </div>
+          <div className="cardDesc"></div> </div>
             <div className='fiveBg'></div>
           </Link>
         </div>
