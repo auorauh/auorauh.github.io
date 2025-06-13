@@ -6,14 +6,261 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
   font-family: var(--font-geist-sans);
+  overflow: hidden;
+  background-image: url(../../public/Assets/Background.png);
+  background-size: cover;
+  background-position: bottom;
+}
+.header {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  line-height: 30px;
+  padding-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 3vh;
+  background-color: white;
+  border-width: 1%;
+  border-color: red;
+  z-index: 100;
+  position: absolute;
+  color: #1c2523;
+  font-size: 4rem;
+  font-family: 'perand', sans-serif;
+
+}
+.footer {
+  width: 100%;
+  height: 4vh;
+  border-top: 1px solid white;
+  position: absolute;
+  bottom: 0%;
+  font-size: larger;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5vh;
+}
+.logo {
+  margin-top: -10px;
+  height: inherit;
+  width: 2%;
+  margin-right: 4vh;
+}
+.projectView {
+  background-color: black;
+  position: absolute;
+  height: 75%;
+  width: 75%;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  padding-top: 1.5em;
+}
+.projectDesc {
+  align-self: flex-start;
+  padding-left: 5%;
+  font-size: 1.25rem;
+}
+.mainSection {
+  width: 100%;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.baseSection {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column-reverse;
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+  
+}
+.base {
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  display: flex;
+}
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.baseImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+}
+.portImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  transition: transform 1s ease, opacity 1s ease;
+}
+.slideOut {
+  transform: translateX(-100%);
+}
+.slideIn {
+  transform: translateX(0%);
+  
+}
+.baseSelection {
+  height: 100%;
+  width: 100%;
+  /* background-color: rgba(255, 0, 0, 0.418); */
+  position: absolute;
+
+}
+.selection {
+  position: relative; 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 12%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  
+}
+.rotate {
+  transform: translateX(-60px) translateY(170px) rotate(0deg);
+  letter-spacing: 3px; /* Increase spacing */
+  font-size:2.75rem;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.fadeIn {
+  opacity: 1;
+}
+.invert {
+  
+}
+
+.fadeOut {
+  opacity: 0;
+}
+.selected {
+  position: absolute;
+  /* background-color: red; */
+  border: 1px solid black;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 11%;
+  z-index: 100;
+}
+.overlayContainer {
+    position: absolute;
+    height: 97%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+}
+.cloudContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cloudImg {
+  height: 15vh;
+  width: 30vw;
+  position: relative; 
+  opacity: .45;
+  animation: moveCloud 100s linear infinite;
+  transform: translateY(-15vh);
+}
+.cloud {
+font-size: 5rem;
+}
+.infoCard {
+  width: 30vw;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+.FLtitle {
+  font-size: 2rem;
+}
+.FLlink {
+  margin-top: 2rem;
+  background-color: #1c2523a1;
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  font-size: .75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.closeBtn {
+  background-color: #d1d6d5a1;
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin: 2rem;
+}
+@keyframes moveCloud {
+  0% {
+    left: -100vh;  /* start off left, adjust as needed */
+  }
+  100% {
+    left: 110vw;   /* move fully to the right beyond viewport width */
+  }
+}
+
+/* Target the scrollbar itself */
+.baseSection::-webkit-scrollbar {
+  width: 0px;
+  height: 12px;
+}
+
+/* Track (background of scrollbar) */
+.baseSection::-webkit-scrollbar-track {
+  background: #00000052;
+  border-radius: 10px;
+}
+
+/* Thumb (the draggable part) */
+.baseSection::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+  width: 5px;
+}
+
+/* Thumb on hover */
+.baseSection::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,35 +297,10 @@
 
 .main code {
   font-family: inherit;
-  background: var(--gray-alpha-100);
+  /* //background: var(--gray-alpha-100); */
   padding: 2px 4px;
   border-radius: 4px;
   font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
 }
 
 a.primary {
@@ -92,22 +314,6 @@ a.secondary {
   min-width: 158px;
 }
 
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
-
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -119,46 +325,71 @@ a.secondary {
     background: var(--button-secondary-hover);
     border-color: transparent;
   }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
 }
 
 @media (max-width: 600px) {
   .page {
-    padding: 32px;
-    padding-bottom: 80px;
+    background-size: cover;
   }
-
-  .main {
-    align-items: center;
+  .header {
+  font-size: 2rem;
+}
+.footer {
+  display: none;
+}
+.logo {
+  width: 10%;
+}
+  .mainSection {
+    height: 100vh;
+    display: flex;
   }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
+  .overlayContainer {
+    align-self: flex-end;
+    height: 18%;
+    position: relative;
     flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    
   }
+  .cloudImg {
+    height: 10vh;
+    transform: translateY(-55vh);
+  }
+  .baseSection {
+    position: absolute;
+  }
+
+  .baseSection {
+    width: 80%;
+    height: 80vh;
+    transform: translateY(-8vh);
+  }
+  .baseImg {
+    width: 100%;
+  }
+  .infoCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+  .FLtitle {
+    font-size: 1.5rem;
+  }
+  .FLlink {
+      margin-top: .5rem;
+  }
+  .releaseDate {
+    font-size: .85rem;
+  }
+  .rotate {
+  transform: translateX(0px) translateY(75px) rotate(0deg);
+  letter-spacing: 3px; /* Increase spacing */
+  font-size:1.75rem;
+  transition: opacity 1.5s ease;
+}
 }
 
 @media (prefers-color-scheme: dark) {
