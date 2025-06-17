@@ -37,7 +37,7 @@
   background-repeat: no-repeat;
   filter: invert(1);
  }
- .logo{ 
+ /* .logo{ 
   height: 100%;
   width: 100%;
   background-image: url('./Assets/64.png');
@@ -45,7 +45,7 @@
   background-repeat: no-repeat;
   background-size:contain;
   filter: invert(1);
- }
+ } */
 .boxTwo { 
   flex: 2;
   background-color: white;
