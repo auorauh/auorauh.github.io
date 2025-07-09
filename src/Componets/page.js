@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Project from './project';
 import { floorListData } from '../floorListData.js'
 import "./page.css";
@@ -16,7 +16,7 @@ export default function Home() {
   const [twFloor, setTowerFloor] = useState(0);
   const [leftImgX, setlImgX] = useState('-101%');
   const [hoverIndex, setHoverIndex] = useState(null);
-  const [hoverFloor, setHoverFloor] = useState(0);
+  // const [hoverFloor, setHoverFloor] = useState(0);
   const [floorTitle, setTitle] = useState({title:null});
   const [explodeView, setExplodeView] = useState(false);
   let fldMap = floorListData.map(item => item.number);
@@ -59,9 +59,9 @@ function setX(toggle) {
     setlImgX('-101%');
   }
 }
-function project(){
-  setViewProject('none');
-}
+// function project(){
+//   setViewProject('none');
+// }
 
 const toggleExplode = () => {
   setExplodeView(prev => !prev);

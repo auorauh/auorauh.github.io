@@ -104,7 +104,10 @@ h1 {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* enables momentum scrolling on iOS */
+  overscroll-behavior: contain;
+  touch-action: auto; /* ensure default touch scrolling is allowed */
 }
 .base {
   width: 100%;
@@ -157,9 +160,9 @@ h1 {
   /* background-color: rgba(255, 0, 0, 0.418); */
 }
 .rotate {
-  transform: translateX(0px) translateY(50px) rotate(0deg);
+  transform: translateX(0px) translateY(45px) rotate(0deg);
   letter-spacing: 3px; /* Increase spacing */
-  font-size:2.75rem;
+  font-size:2.25rem;
   opacity: 0;
   transition: opacity 1.5s ease;
 }
@@ -336,6 +339,11 @@ a.secondary {
     background: var(--button-secondary-hover);
     border-color: transparent;
   }
+}
+@media (max-width: 1100px) {
+.projectItem {
+  height: 60%;
+}
 }
 
 @media (max-width: 600px) {

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+// import { useState, useEffect, useRef } from 'react';
 import "./page.css";
 
 export default function Project(props) {
@@ -11,7 +11,7 @@ export default function Project(props) {
             className = 'projectItem'
               src={props.info.import}
               alt="Example"
-              style={{ objectFit: 'contain' }} // or 'cover' depending on how you want it to scale
+              // style={{ objectFit: 'contain' }} // or 'cover' depending on how you want it to scale
             />
         </div>
         <div className="projectDesc">{props.info.desc}</div>
