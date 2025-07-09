@@ -72,6 +72,9 @@ window.addEventListener('touchmove', function (e) {
     e.preventDefault();
   }
 }, { passive: false });
+document.querySelector('.baseSection').addEventListener('touchmove', e => {
+  e.stopPropagation();
+}, { passive: true });
 
   return (
     <div className="page">
