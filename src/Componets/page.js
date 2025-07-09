@@ -67,14 +67,6 @@ const toggleExplode = () => {
   setExplodeView(prev => !prev);
   setViewProject(prev => !prev);
 };
-window.addEventListener('touchmove', function (e) {
-  if (window.scrollY === 0) {
-    e.preventDefault();
-  }
-}, { passive: false });
-document.querySelector('.baseSection').addEventListener('touchmove', e => {
-  e.stopPropagation();
-}, { passive: true });
 
   return (
     <div className="page">
