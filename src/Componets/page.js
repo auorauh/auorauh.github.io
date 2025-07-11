@@ -11,7 +11,7 @@ import Fire from '../Assets/Fire.png';
 
 export default function Home() {
   const [portfolio, setPortfolio] = useState(false);
-  const [showPort, setShow] = useState('flex');
+  const [showPort] = useState('flex');
   const [viewProject, setViewProject] = useState(false);
   const [twFloor, setTowerFloor] = useState(0);
   const [leftImgX, setlImgX] = useState('-101%');
@@ -22,8 +22,8 @@ export default function Home() {
   let fldMap = floorListData.map(item => item.number);
   const fldRev = [...fldMap].reverse();
     const [projectData, setProjectData] = useState({
-    title: 'hey',
-    description: 'hey'
+    title: '',
+    description: ''
   });
   const baseTransforms = [
     '-348%','-319%','-290%','-261%','-232%','-203%','-174%','-145%','-116%','-87%', '-58%','-29%', '0%']; 
@@ -36,13 +36,10 @@ export default function Home() {
   function selectFloor(index){
     if(index !== undefined) {
           setTitle(floorListData[index-1]);
-          let obj = projectData
-          obj.title = floorListData[index-1].title;
           setProjectData(floorListData[index-1]);
-    };
+    }
   }
   function towerFloor(index){
-    console.log('cllick',index);
     setTowerFloor(index);
   }
 function enterPortfolio() {
@@ -86,7 +83,6 @@ const toggleExplode = () => {
               let translateY = offset;
               let img = Base;
               let portImg = Tower;
-              let showPortfolio = portfolio;
               let explodeOffset = 0;
               if (explodeView && hoverIndex !== null) {
                 if (index < hoverIndex) {

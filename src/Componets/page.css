@@ -148,7 +148,7 @@ h1 {
   height: 100%;
   width: 100%;
   position: absolute;
-
+  
 }
 .selection {
   position: relative; 
@@ -174,7 +174,6 @@ h1 {
 }
 .selected {
   position: absolute;
-  /* background-color: red; */
   border: 1px solid black;
   top: 0;
   left: 0;
@@ -225,12 +224,12 @@ font-size: 5rem;
   margin-top: 2rem;
   background-color: #1c2523a1;
   width: 10rem;
-  height: 2rem;
   display: flex;
   font-size: .75rem;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  padding: .5rem 0;
 }
 .closeBtn {
   background-color: #d1d6d5a1;
@@ -256,7 +255,6 @@ font-size: 5rem;
 /* Target the scrollbar itself */
 .baseSection::-webkit-scrollbar {
   width: 0px;
-  height: 12px;
 }
 
 /* Track (background of scrollbar) */
@@ -269,7 +267,6 @@ font-size: 5rem;
 .baseSection::-webkit-scrollbar-thumb {
   background: #555;
   border-radius: 10px;
-  width: 5px;
 }
 
 /* Thumb on hover */
@@ -357,7 +354,7 @@ a.secondary {
   display: none;
 }
 .icon {
-  width: 6%;
+  width: 8%;
 }
   .mainSection {
     height: 100vh;
@@ -369,7 +366,7 @@ a.secondary {
     position: relative;
     flex-direction: column;
     align-items: center;
-    
+    text-align: center;
   }
   .cloudImg {
     height: 10vh;
@@ -378,7 +375,9 @@ a.secondary {
   .baseSection {
     position: absolute;
   }
-
+  .baseSection::-webkit-scrollbar {
+  width: 15px;
+}
   .baseSection {
     width: 80%;
     height: 80vh;
