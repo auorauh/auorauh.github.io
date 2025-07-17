@@ -79,6 +79,7 @@ const toggleExplode = () => {
               <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>
             </div> : <></>}
             </div>
+            <div className="scrollWrapper">
             <div className={"baseSection"}>
             {baseTransforms.map((offset, index) => {
               let translateY = offset;
@@ -159,6 +160,7 @@ const toggleExplode = () => {
         </div>
       );
     })}
+            </div>
             </div>
         </div>
         <div className={"footer"}>64 Floors Project</div>
