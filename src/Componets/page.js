@@ -28,6 +28,7 @@ export default function Home() {
   const baseTransforms = [
     '-348%','-319%','-290%','-261%','-232%','-203%','-174%','-145%','-116%','-87%', '-58%','-29%', '0%']; 
     // offset by -29% for new entry
+    
   //     useEffect(() => {
   //   return () => {
   //   };
