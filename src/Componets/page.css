@@ -95,15 +95,6 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-.scrollWrapper {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  display: flex;
-  justify-content: center;
-}
 .baseSection {
   height: 100%;
   width: 25%;
