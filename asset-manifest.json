@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.21884ee6.css",
-    "main.js": "/static/js/main.16b84be2.js",
+    "main.css": "/static/css/main.40848a12.css",
+    "main.js": "/static/js/main.6da78fa2.js",
     "static/js/453.7ff71d12.chunk.js": "/static/js/453.7ff71d12.chunk.js",
     "static/media/Background.png": "/static/media/Background.07a8917d1498b3dde93e.png",
     "static/media/devicon.svg?iehcku": "/static/media/devicon.de33ff67547800466a48.svg",
@@ -23,15 +23,17 @@
     "static/media/floor8.jpg": "/static/media/floor8.38b05c2848e3dfbe2359.jpg",
     "static/media/SpaceGrotesk-VariableFont_wght.ttf": "/static/media/SpaceGrotesk-VariableFont_wght.f0f1fce4a59e46198487.ttf",
     "static/media/Kabisat Demo-ItalicTall.ttf": "/static/media/Kabisat Demo-ItalicTall.c9e4d4a8008dc59931fa.ttf",
+    "static/media/Kabisat Demo-ItalicTall.woff": "/static/media/Kabisat Demo-ItalicTall.0b1e30776b0b5b110add.woff",
     "static/media/64.png": "/static/media/64.2ad8d2fe4f3620857d20.png",
+    "static/media/Kabisat Demo-ItalicTall.woff2": "/static/media/Kabisat Demo-ItalicTall.db98cb93d378ef9ef474.woff2",
     "static/media/perand.woff": "/static/media/perand.5c4a3b4c4172bf9a9430.woff",
     "index.html": "/index.html",
-    "main.21884ee6.css.map": "/static/css/main.21884ee6.css.map",
-    "main.16b84be2.js.map": "/static/js/main.16b84be2.js.map",
+    "main.40848a12.css.map": "/static/css/main.40848a12.css.map",
+    "main.6da78fa2.js.map": "/static/js/main.6da78fa2.js.map",
     "453.7ff71d12.chunk.js.map": "/static/js/453.7ff71d12.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21884ee6.css",
-    "static/js/main.16b84be2.js"
+    "static/css/main.40848a12.css",
+    "static/js/main.6da78fa2.js"
   ]
 }
