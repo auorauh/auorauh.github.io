@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect, useImperativeHandle,forwardRef  } from 'react';
-import { Canvas, useFrame, useThree, useLoader} from '@react-three/fiber';
-import { OrbitControls, Text, Html } from '@react-three/drei';
+import { Canvas, useFrame, useThree} from '@react-three/fiber';
+import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
-import staticbg from '../Assets/static.png';
 import "./Current.css";
 import { portContent } from './portContent.js';
 import 'devicon/devicon.min.css';
 
 function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
-  const [content, setContent] = useState('');
   const [isMobile, setIsMobile] = useState(false);
   const [title, setTitle] = useState('');
   const [main, setMain] = useState('Select a card to begin');
@@ -24,11 +22,8 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
           const checkMobile = () => {
           setIsMobile(window.matchMedia('(max-width: 600px)').matches);
         };
-
-        // Initial check
         checkMobile();
         
-        // Listen for changes
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, [ref]);
@@ -45,7 +40,6 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
   });
     useImperativeHandle(ref, () => ({
     fillContent: (selection) => {
-      setContent(portContent[0]);
       setTitle(portContent[selection].title);
       setMain(portContent[selection].main);
       setSub(portContent[selection].subSection);
@@ -69,7 +63,7 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
       />
     </mesh>
     <Html
-          distanceFactor={.65} // Scale factor
+          distanceFactor={.55} // Scale factor
           position={[0, 0, 0]} // Offset from mesh center
           transform // Respects mesh rotation/scale
           occlude // Hide when behind objects
@@ -119,9 +113,8 @@ const ForwardedExpandingGlobe = forwardRef(ExpandingGlobe);
 function LineworkGlobe() {
   const [isExpanded, setIsExpanded] = useState(false);
   const expandingGlobeRef = useRef();
-  const orbitControlsRef = useRef(); // New ref for OrbitControls
+  const orbitControlsRef = useRef();
 
-  // Disable controls when expanded
   useEffect(() => {
     if (orbitControlsRef.current) {
       orbitControlsRef.current.enabled = !isExpanded;
@@ -158,7 +151,7 @@ function LineworkGlobe() {
         camera={{ position: [0, 0, 10] }}
         style={{ 
           width: '100%', 
-          height: '100vh',
+          height: '100dvh',
           background: 'transparent',
           cursor: 'pointer'
         }}
@@ -177,8 +170,8 @@ function LineworkGlobe() {
           dampingFactor={0.05}
           minDistance={isExpanded ? 0.5 : 5}
           maxDistance={15}
-          enableZoom={false} // Disable all zoom (scroll/pinch)
-          enablePan={false} // Optional: disable panning
+          enableZoom={false}
+          enablePan={false}
         />
       </Canvas>
     </div>

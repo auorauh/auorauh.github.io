@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Project from './project';
 import { floorListData } from '../floorListData.js'
 import "./page.css";
@@ -25,14 +25,44 @@ export default function Home() {
     title: '',
     description: ''
   });
-  const baseTransforms = [
-    '-348%','-319%','-290%','-261%','-232%','-203%','-174%','-145%','-116%','-87%', '-58%','-29%', '0%']; 
+const generateBaseTransforms = (count, start = 0, step = 71) => {
+  return Array.from({ length: count }, (_, i) => `${start - i * step}%`);
+};
+
+const baseTransforms = generateBaseTransforms(floorListData.length);
     // offset by -29% for new entry
     
-  //     useEffect(() => {
-  //   return () => {
-  //   };
-  // }, []);
+useEffect(() => {
+  const baseEl = document.querySelector('.baseSection');
+  if (!baseEl) return;
+  const maxScroll = 350;
+  let isLocked = false;
+  const handleScroll = () => {
+    if (isLocked) return;
+
+    if (baseEl.scrollTop > maxScroll) {
+      isLocked = true;
+
+      baseEl.scrollTo({
+        top: maxScroll,
+        behavior: 'smooth'
+      });
+
+      baseEl.removeEventListener('scroll', handleScroll);
+
+      setTimeout(() => {
+        baseEl.addEventListener('scroll', handleScroll);
+        isLocked = false;
+      }, 300); // wait 300ms before re-enabling the listener
+    }
+  };
+  baseEl.addEventListener('scroll', handleScroll);
+  return () => {
+    if (baseEl) {
+      baseEl.removeEventListener('scroll', handleScroll);
+    }
+  };
+}, []);
 
   function selectFloor(index){
     if(index !== undefined) {

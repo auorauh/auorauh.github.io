@@ -8,7 +8,7 @@ export default function Project(props) {
       <h1>{props.info.title}</h1>
         <div className="projectItem">
             <img
-            className = 'projectItem'
+            className = 'projectImg'
               src={props.info.import}
               alt="Example"
               // style={{ objectFit: 'contain' }} // or 'cover' depending on how you want it to scale

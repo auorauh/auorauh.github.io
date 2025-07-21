@@ -1,9 +1,13 @@
 @font-face {
   font-family: 'Kabisat ItalicTall';
-  src: url('../Assets/Kabisat\ Demo-ItalicTall.ttf') format('truetype');
+  src: url('../Assets/Kabisat\ Demo-ItalicTall.woff2') format('woff2'),
+       url('../Assets/Kabisat\ Demo-ItalicTall.woff') format('woff'),
+       url('../Assets/Kabisat\ Demo-ItalicTall.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
+
 @font-face {
   font-family: 'spage-grotesk';
   src: url('../Assets/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
@@ -18,14 +22,14 @@
     color: #e0e0e0;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     position: relative;
     font-family: 'spage-grotesk';
   }
   .overlay {
     position: absolute;
-    height: 100vh;
+    height: 100dvh;
     width: 25vw;
     z-index: 2;
     left:0;
@@ -127,7 +131,7 @@
   }
   .column {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 0px;
   }
