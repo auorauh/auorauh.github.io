@@ -49,8 +49,8 @@ export const portContent = [
         title: 'Projects',
         gridHeaders: ['', '', ''],
         gridContent: [
-            [<a>64floors</a>,<a>accesstotheinternet</a>,<a>Everest Peak Construction</a>],
-            [<a>Viddy Studio</a>,<a>Thats Valid</a>,<a>Nation Afforable Housing Association</a>]
+            [<a href="https://64floors.com">64floors</a>,<a href="https://accesstotheinternet.com">accesstotheinternet</a>,<a href="https://everestpeakconstruction.com">Everest Peak Construction</a>],
+            [<a href="https://viddystudio.com">Viddy Studio</a>,<a href="https://thats-valid.vercel.app">Thats Valid</a>,<a href="https://freedomflyers.co">Freedom Flyers</a>]
         ]
     },
         {

@@ -29,13 +29,13 @@ const generateBaseTransforms = (count, start = 0, step = 71) => {
   return Array.from({ length: count }, (_, i) => `${start - i * step}%`);
 };
 
-const baseTransforms = generateBaseTransforms(floorListData.length);
+const baseTransforms = generateBaseTransforms(floorListData.length + 1);
     // offset by -29% for new entry
     
 useEffect(() => {
   const baseEl = document.querySelector('.baseSection');
   if (!baseEl) return;
-  const maxScroll = 350;
+  const maxScroll = 300;
   let isLocked = false;
   const handleScroll = () => {
     if (isLocked) return;

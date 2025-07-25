@@ -118,6 +118,12 @@
 .tech-icon span {
     font-size: 7px;
 }
+.grid-cell {
+  font-size: .75rem;
+}
+a {
+  color: white;
+}
 @media (max-width: 600px) {
     .nameCard {
         font-size: 2.5rem;
