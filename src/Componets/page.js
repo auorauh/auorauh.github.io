@@ -1,7 +1,10 @@
 import { useState,useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Project from './project';
+import About from './About';
 import { floorListData } from '../floorListData.js'
 import "./page.css";
+import ig from "../Assets/ig.png";
 import logo from "../Assets/64.png";
 import cloud from '../Assets/cloud.png';
 import Tower from '../Assets/Tower.png';
@@ -13,11 +16,12 @@ export default function Home() {
   const [portfolio, setPortfolio] = useState(false);
   const [showPort] = useState('flex');
   const [viewProject, setViewProject] = useState(false);
+  const [viewAbout, setViewAbout] = useState(false);
   const [twFloor, setTowerFloor] = useState(0);
   const [leftImgX, setlImgX] = useState('-101%');
   const [hoverIndex, setHoverIndex] = useState(null);
   // const [hoverFloor, setHoverFloor] = useState(0);
-  const [floorTitle, setTitle] = useState({title:null});
+  const [floorTitle, setTitle] = useState({title:'Select a floor to begin'});
   const [explodeView, setExplodeView] = useState(false);
   let fldMap = floorListData.map(item => item.number);
   const fldRev = [...fldMap].reverse();
@@ -90,6 +94,9 @@ function setX(toggle) {
 // function project(){
 //   setViewProject('none');
 // }
+const openAbout = () => {
+  setViewAbout(prev => !prev);
+}
 
 const toggleExplode = () => {
   setExplodeView(prev => !prev);
@@ -97,16 +104,32 @@ const toggleExplode = () => {
 };
 
   return (
+    <>
+      <Helmet>
+        <title>64 Floors – Creative Art Project</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../Assets/64.png" />
+        <meta
+          name="description"
+          content="64 Floors is an artistic journey through 64 unique creative spaces, each representing a different art style and mood."
+        />
+        <meta name="keywords" content="64 Floors, art project, creative series, Instagram art" />
+        {/* Open Graph (for sharing) */}
+        <meta property="og:title" content="64 Floors - Creative Art Project" />
+        <meta property="og:description" content="Explore 64 unique floors of creativity." />
+        <meta property="og:image" content="https://64floors.com/static/media/Base.37372380a2b4afafec1d.png" />
+        <meta property="og:url" content="https://64floors.com" />
+      </Helmet>
     <div className="page">
-      <div className={"header"}>{portfolio ?  <div className="headerText" onClick={enterPortfolio}>LOST TOWER INC</div> : <div className="headerText" onClick={enterPortfolio}>SIXTY FOUR  FLOORS</div>} <img className="icon" src={logo} alt="site logo"></img></div>
+      <div className={"header"}>{portfolio ?  <div className="headerText" onClick={enterPortfolio}>LOST TOWER INC</div> : <div className="headerText" onClick={enterPortfolio}>SIXTY FOUR  FLOORS</div>}<div className="rightHeader"><p className="aboutText" onClick={openAbout}>What is 64Floors?</p> <img className="icon" src={logo} alt="site logo"></img></div></div>
         <div className={"mainSection"} onMouseLeave={() => setHoverIndex(null)}>
           {viewProject ? <Project info={projectData} close={toggleExplode}/> : <></>}
+          {viewAbout ? <About close={openAbout}/> : <></>}
             <div className={"overlayContainer"}>
               <div className={"cloudContainer"}><img className="cloudImg" src={cloud} alt='background Cloud img'></img> </div>
             {floorTitle.title !== null ? <div className={"infoCard"}>
               <div className={"FLtitle"}>{floorTitle.title}</div>
               <i className={"releaseDate"}>{floorTitle.release}</i>
-              <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>
+              {floorTitle.title == 'Select a floor to begin' ? <></> : <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>}
             </div> : <></>}
             </div>
             <div className={"baseSection"}>
@@ -191,7 +214,13 @@ const toggleExplode = () => {
     })}
             </div>
         </div>
-        <div className={"footer"}>64 Floors Project</div>
+        <div className={"footer"}>
+          <a className="igIcon"  href="https://www.instagram.com/64floors/" target="_blank" rel="noopener noreferrer">
+          <img className="igIcon" src={ig} alt="icon for linking instagram" />
+          </a>
+          <div>64 Floors Project</div>
+          </div>
     </div>
+    </>
   );
 }

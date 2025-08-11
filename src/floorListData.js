@@ -98,11 +98,19 @@ export const floorListData = [
     desc: 'An old dream car'
   },
   {
-    title: 'Floor 12 - Born To Drive',
+    title: 'Floor 12 - Mead',
     imagePath: '../Assets/floor10demo.png',
     import: fl12Img,
     release: 'unreleased',
     number: 12,
-    desc: 'Short Film'
+    desc: 'Brewing Mead'
+  },
+    {
+    title: 'Floor 13 - Zine',
+    imagePath: '../Assets/floor10demo.png',
+    import: fl12Img,
+    release: 'unreleased',
+    number: 13,
+    desc: 'The story of 64 - Zine'
   },
 ];
