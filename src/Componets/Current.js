@@ -74,6 +74,7 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
             borderRadius: '8px',
             width: isMobile ? '200px' : '600px',
           }}>
+            <button className="resetBtn" onClick={onToggleExpand}>Return</button>
             <h3>{title}</h3>
                   <div className="main">
                     {main}
@@ -102,7 +103,7 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
                 </div>
                 </div>
                 
-            <button className="resetBtn" onClick={onToggleExpand}>Return</button>
+            
           </div>
         </Html>
     </group>
