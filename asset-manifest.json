@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.acb8705e.css",
-    "main.js": "/static/js/main.cb4d3b90.js",
+    "main.css": "/static/css/main.112893ad.css",
+    "main.js": "/static/js/main.96990a7f.js",
     "static/js/453.7ff71d12.chunk.js": "/static/js/453.7ff71d12.chunk.js",
     "static/media/Background.png": "/static/media/Background.07a8917d1498b3dde93e.png",
     "static/media/devicon.svg?iehcku": "/static/media/devicon.de33ff67547800466a48.svg",
@@ -28,12 +28,12 @@
     "static/media/Kabisat Demo-ItalicTall.woff2": "/static/media/Kabisat Demo-ItalicTall.db98cb93d378ef9ef474.woff2",
     "static/media/perand.woff": "/static/media/perand.5c4a3b4c4172bf9a9430.woff",
     "index.html": "/index.html",
-    "main.acb8705e.css.map": "/static/css/main.acb8705e.css.map",
-    "main.cb4d3b90.js.map": "/static/js/main.cb4d3b90.js.map",
+    "main.112893ad.css.map": "/static/css/main.112893ad.css.map",
+    "main.96990a7f.js.map": "/static/js/main.96990a7f.js.map",
     "453.7ff71d12.chunk.js.map": "/static/js/453.7ff71d12.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.acb8705e.css",
-    "static/js/main.cb4d3b90.js"
+    "static/css/main.112893ad.css",
+    "static/js/main.96990a7f.js"
   ]
 }
