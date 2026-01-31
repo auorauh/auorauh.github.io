@@ -74,7 +74,6 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
             padding: '1rem',
             borderRadius: '8px',
             width: isMobile ? '250px' : '600px',
-            height: '70vh',
           }}>
             <button className="resetBtn" onClick={onToggleExpand}>Return</button>
             <h3>{title}</h3>
