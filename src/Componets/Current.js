@@ -70,9 +70,11 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
         >
           <div className="box" style={{
             color: 'white',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '1rem',
             borderRadius: '8px',
-            width: isMobile ? '200px' : '600px',
+            width: isMobile ? '250px' : '600px',
+            height: '70vh',
           }}>
             <button className="resetBtn" onClick={onToggleExpand}>Return</button>
             <h3>{title}</h3>
@@ -148,33 +150,37 @@ function LineworkGlobe() {
         <div className='card bottom' onClick={() => handleCardClick(3)}>Contact</div>
       </div>
 }
-      <Canvas 
-        camera={{ position: [0, 0, 10] }}
-        style={{ 
-          width: '100%', 
-          height: '100dvh',
-          background: 'transparent',
-          cursor: 'pointer'
-        }}
-        gl={{ alpha: true }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[1, 1, 1]} intensity={0.5} />
-        <ForwardedExpandingGlobe 
-          ref={expandingGlobeRef}
-          isExpanded={isExpanded}
-          onToggleExpand={reset}
-          onClick={() => setIsExpanded(!isExpanded)}
-        />
-        <OrbitControls 
-          ref={orbitControlsRef}
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={isExpanded ? 0.5 : 5}
-          maxDistance={15}
-          enableZoom={false}
-          enablePan={false}
-        />
-      </Canvas>
+<div className={`canvas-wrapper ${isExpanded ? 'expanded' : ''}`}>
+  <Canvas
+    camera={{ position: [0, 0, 10] }}
+    gl={{ alpha: true }}
+    style={{ 
+      width: '100%', 
+      height: '100dvh',  
+      background: 'transparent', 
+      cursor: 'pointer' }}
+  >
+    <ambientLight intensity={0.5} />
+    <directionalLight position={[1, 1, 1]} intensity={0.5} />
+
+    <ForwardedExpandingGlobe
+      ref={expandingGlobeRef}
+      isExpanded={isExpanded}
+      onToggleExpand={reset}
+      onClick={() => setIsExpanded(!isExpanded)}
+    />
+
+    <OrbitControls
+      ref={orbitControlsRef}
+      enableDamping
+      dampingFactor={0.05}
+      minDistance={isExpanded ? 0.5 : 5}
+      maxDistance={15}
+      enableZoom={false}
+      enablePan={false}
+    />
+  </Canvas>
+</div>
     </div>
   );
 }

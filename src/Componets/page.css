@@ -404,7 +404,6 @@ a.secondary {
   }
   .overlayContainer {
     align-self: flex-end;
-    height: 18%;
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -433,8 +432,11 @@ a.secondary {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: 1rem;
-    height: 8vh;
+    height: unset;
+    background-image: url(../Assets/Background.png);
+    background-size: cover;
+    background-position: bottom;
+    z-index: 10000;
   }
   .FLtitle {
     font-size: 1.5rem;
@@ -457,9 +459,9 @@ h1 {
 .projectView {
   font-size: 4rem;
   width: 90%;
+  height: unset;
 }
 .projectItem {
-  height:40%;
 }
 .projectItem h2 {
   font-size: 1rem;

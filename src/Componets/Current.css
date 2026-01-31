@@ -30,13 +30,14 @@
   .overlay {
     position: absolute;
     height: 100dvh;
-    width: 25vw;
+    /* width: 25vw; */
     z-index: 2;
     left:0;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     padding-left: 5%;
+    gap: 1rem;
   }
   .resetBtn {
     background: transparent;
@@ -60,6 +61,7 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
+    padding: .75rem;
   }
   .card:hover {
     box-shadow: inset 0 0 20px rgba(26, 201, 11);
@@ -68,7 +70,7 @@
     margin-bottom: 15rem;
   }
   .main {
-    font-size: .6rem;
+    font-size: .85rem;
   }
   .subSection {
     font-size: .5rem;
@@ -124,6 +126,29 @@
 a {
   color: white;
 }
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.canvas-wrapper.expanded {
+  position: fixed;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 */
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-image: url('../Assets/static.png');
+}
+
+/* Mobile Safari fix */
+@supports (-webkit-touch-callout: none) {
+  .canvas-wrapper,
+  .canvas-wrapper.expanded {
+    height: -webkit-fill-available;
+  }
+}
+
 @media (max-width: 600px) {
     .nameCard {
         font-size: 2.5rem;

@@ -39,7 +39,8 @@ const baseTransforms = generateBaseTransforms(floorListData.length + 1);
 useEffect(() => {
   const baseEl = document.querySelector('.baseSection');
   if (!baseEl) return;
-  const maxScroll = 300;
+  const isMobile = window.innerWidth <= 768;
+  const maxScroll = (isMobile ? 300 : 500);
   let isLocked = false;
   const handleScroll = () => {
     if (isLocked) return;
@@ -57,7 +58,7 @@ useEffect(() => {
       setTimeout(() => {
         baseEl.addEventListener('scroll', handleScroll);
         isLocked = false;
-      }, 300); // wait 300ms before re-enabling the listener
+      }, 10); // wait 300ms before re-enabling the listener
     }
   };
   baseEl.addEventListener('scroll', handleScroll);
@@ -68,7 +69,7 @@ useEffect(() => {
   };
 }, []);
 
-  function selectFloor(index){
+function selectFloor(index){
     if(index !== undefined) {
           setTitle(floorListData[index-1]);
           setProjectData(floorListData[index-1]);
@@ -120,7 +121,7 @@ const toggleExplode = () => {
         <meta property="og:url" content="https://64floors.com" />
       </Helmet>
     <div className="page">
-      <div className={"header"}>{portfolio ?  <div className="headerText" onClick={enterPortfolio}>LOST TOWER INC</div> : <div className="headerText" onClick={enterPortfolio}>SIXTY FOUR  FLOORS</div>}<div className="rightHeader" onClick={openAbout}><p className="aboutText">What is 64Floors?</p> <img className="icon" src={logo} alt="site logo"></img></div></div>
+      <div className={"header"}>{portfolio ?  <div className="headerText" onClick={enterPortfolio}>LOST TOWER INC</div> : <div className="headerText">SIXTY FOUR  FLOORS</div>}<div className="rightHeader" onClick={openAbout}><p className="aboutText">What is 64Floors?</p> <img className="icon" src={logo} alt="site logo"></img></div></div>
         <div className={"mainSection"} onMouseLeave={() => setHoverIndex(null)}>
           {viewProject ? <Project info={projectData} close={toggleExplode}/> : <></>}
           {viewAbout ? <About close={openAbout}/> : <></>}
