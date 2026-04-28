@@ -4,6 +4,12 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Gadhen';
+  src: url('../Fonts/Gadhen.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -21,6 +27,8 @@
   background-position: bottom;
   width: 100%;
   height: 100%;
+  font-family: 'Gadhen', sans-serif;
+  font-weight: 900;
 }
 .header {
   width: 100%;
@@ -39,7 +47,7 @@
   color: #1c2523;
   font-size: 4rem;
   overflow: hidden;
-  font-family: 'Perand', sans-serif;
+  font-family: 'Gadhen', sans-serif;
 }
 .headerText {
   margin-left: 1rem;
@@ -51,11 +59,13 @@
   align-items: center;
   width: 100%;
   line-height: 1rem;
+  
 }
 .aboutText {
   font-size: 1.5rem;
   margin-right: 2rem;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family:'Gadhen', sans-serif;
+  font-weight: 900;
 }
 .footer {
   /* width: 100%; */
@@ -253,6 +263,8 @@ font-size: 5rem;
 }
 .FLtitle {
   font-size: 2rem;
+  font-family: 'Gadhen', sans-serif;
+  font-weight: 900;
 }
 .FLlink {
   margin-top: 2rem;
@@ -374,6 +386,13 @@ a.secondary {
 @media (max-width: 1100px) {
 .projectItem {
   height: 60%;
+}
+.headerText {
+  font-size: 2.15rem;
+  font-weight: 900;
+}
+.base {
+  height: 20%;
 }
 }
 
