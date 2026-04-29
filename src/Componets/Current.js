@@ -103,8 +103,6 @@ function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
                   ))}
                 </div>
                 </div>
-                
-            
           </div>
         </Html>
     </group>
