@@ -1,118 +1,112 @@
-import { useState, useRef, useEffect, useImperativeHandle,forwardRef  } from 'react';
-import { Canvas, useFrame, useThree} from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { useState, useRef, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
-import "./Current.css";
+import './Current.css';
 import { portContent } from './portContent.js';
 import 'devicon/devicon.min.css';
 
-function ExpandingGlobe({ isExpanded, onClick, onToggleExpand }, ref) {
-  const [isMobile, setIsMobile] = useState(false);
-  const [title, setTitle] = useState('');
-  const [main, setMain] = useState('Select a card to begin');
-  const [subSection, setSub] = useState('');
-  const [gridHeaders, setHeaders] = useState('');
-  const [gridContent, setGridContent] = useState([]);
+function ExpandingGlobe({ isExpanded }) {
   const globeRef = useRef();
   const { camera } = useThree();
-  const targetScale = isExpanded ? 3 : 1;
-  const targetCameraZ = isExpanded ? 0.5 : 10; // Changed to 0.5 to prevent click issues
+  const targetScale = isExpanded ? 1.65 : 1;
+  const targetCameraZ = isExpanded ? 7 : 10;
 
-    useEffect(() => {
-          const checkMobile = () => {
-          setIsMobile(window.matchMedia('(max-width: 600px)').matches);
-        };
-        checkMobile();
-        
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, [ref]);
   useFrame(() => {
+    if (!globeRef.current) return;
     globeRef.current.scale.lerp(
       new THREE.Vector3(targetScale, targetScale, targetScale),
       0.05
     );
-    camera.position.lerp(
-      new THREE.Vector3(0, 0, targetCameraZ),
-      0.05
-    );
-    globeRef.current.rotation.y += 0.003;
+    camera.position.lerp(new THREE.Vector3(0, 0, targetCameraZ), 0.05);
+    globeRef.current.rotation.y += 0.0012;
   });
-    useImperativeHandle(ref, () => ({
-    fillContent: (selection) => {
-      setTitle(portContent[selection].title);
-      setMain(portContent[selection].main);
-      setSub(portContent[selection].subSection);
-      setHeaders(portContent[selection].gridHeaders);
-      setGridContent(portContent[selection].gridContent);
-    }
-  }));
 
   return (
-    <group>
-    <mesh 
-      ref={globeRef} 
-      onClick={onClick}
-      scale={1}>
+    <mesh ref={globeRef} scale={1}>
       <sphereGeometry args={[5, 32, 32]} />
-      <meshBasicMaterial 
-        color="#1AC90B" 
-        wireframe 
-        transparent 
-        opacity={0.8} 
+      <meshBasicMaterial
+        color="#1AC90B"
+        wireframe
+        transparent
+        opacity={isExpanded ? 0.35 : 0.8}
       />
     </mesh>
-    <Html
-          distanceFactor={.55} // Scale factor
-          position={[0, 0, 0]} // Offset from mesh center
-          transform // Respects mesh rotation/scale
-          occlude // Hide when behind objects
-        >
-          <div className="box" style={{
-            color: 'white',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            padding: '1rem',
-            borderRadius: '8px',
-            width: isMobile ? '250px' : '600px',
-          }}>
-            <button className="resetBtn" onClick={onToggleExpand}>Return</button>
-            <h3>{title}</h3>
-                  <div className="main">
-                    {main}
-                </div>
-                <div className="subSection">
-                  {subSection}
-                </div>
-                <div className="grid">
-                  <div className="headers">
-                    <div className="gridHeader">{gridHeaders[0]}</div>
-                    <div className="gridHeader">{gridHeaders[1]}</div>
-                    <div className="gridHeader">{gridHeaders[2]}</div>
-                  </div>
-                <div className="gridContent">
-                  {gridContent.map((row, rowIndex) => (
-                    <div className="grid-row" key={`row-${rowIndex}`}>
-                      {row.map((cell, colIndex) => (
-                        <div 
-                          className="grid-cell" 
-                          key={`cell-${rowIndex}-${colIndex}`}>
-                          {cell}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                </div>
-          </div>
-        </Html>
-    </group>
   );
-  
 }
-const ForwardedExpandingGlobe = forwardRef(ExpandingGlobe);
+
+function PortfolioPanel({ content, onClose }) {
+  if (!content) return null;
+
+  const sections = content.sections || [];
+  const projects = content.projects || [];
+
+  return (
+    <div
+      className={`portPanel portPanel--${content.layout || 'default'}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={content.title}
+    >
+      <div className="portPanelHeader">
+        <h3 className="portPanelTitle">{content.title}</h3>
+        <button type="button" className="resetBtn" onClick={onClose}>
+          Return
+        </button>
+      </div>
+
+      <div className="portPanelBody">
+        {content.main ? <div className="main">{content.main}</div> : null}
+        {content.subSection ? (
+          <div className="subSection">{content.subSection}</div>
+        ) : null}
+
+        {sections.length > 0 ? (
+          <div className="portSections">
+            {sections.map((section) => (
+              <div className="portSection" key={section.heading}>
+                <h4 className="portSectionTitle">{section.heading}</h4>
+                <ul className="portSectionList">
+                  {section.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {projects.length > 0 ? (
+          <div className="projectGrid">
+            {projects.map((project) => (
+              <a
+                className="projectCard"
+                key={project.href}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="projectCardText">
+                  <span className="projectCardName">{project.name}</span>
+                  {project.note ? (
+                    <span className="projectCardNote">{project.note}</span>
+                  ) : null}
+                </span>
+                <span className="projectCardArrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function LineworkGlobe() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const expandingGlobeRef = useRef();
+  const [activeContent, setActiveContent] = useState(null);
   const orbitControlsRef = useRef();
 
   useEffect(() => {
@@ -124,60 +118,80 @@ function LineworkGlobe() {
     }
   }, [isExpanded]);
 
+  useEffect(() => {
+    if (!isExpanded) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsExpanded(false);
+        setActiveContent(null);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isExpanded]);
+
   const handleCardClick = (selection) => {
-    if (expandingGlobeRef.current?.fillContent) {
-      expandingGlobeRef.current.fillContent(selection);
-    }
+    setActiveContent(portContent[selection]);
     setIsExpanded(true);
   };
 
-  const reset = () => {
-    setIsExpanded(!isExpanded);
-  }
-
+  const closePanel = () => {
+    setIsExpanded(false);
+    setActiveContent(null);
+  };
 
   return (
     <div className="container">
-      {isExpanded ? null : 
-      <div className="overlay">
-        <div className="nameCard"> Trenton Teasdale</div>
-        <div className='card' onClick={() => handleCardClick(0)}>About Me</div>
-        <div className='card' onClick={() => handleCardClick(1)}>Skills</div>
-        <div className='card' onClick={() => handleCardClick(2)}>Projects</div>
-        <div className='card bottom' onClick={() => handleCardClick(3)}>Contact</div>
+      {!isExpanded ? (
+        <div className="overlay">
+          <div className="nameCard">Trenton Teasdale</div>
+          <div className="card" onClick={() => handleCardClick(0)}>
+            About Me
+          </div>
+          <div className="card" onClick={() => handleCardClick(1)}>
+            Skills
+          </div>
+          <div className="card" onClick={() => handleCardClick(2)}>
+            Projects
+          </div>
+          <div className="card bottom" onClick={() => handleCardClick(3)}>
+            Contact
+          </div>
+        </div>
+      ) : null}
+
+      {isExpanded ? (
+        <PortfolioPanel content={activeContent} onClose={closePanel} />
+      ) : null}
+
+      <div className={`canvas-wrapper ${isExpanded ? 'expanded' : ''}`}>
+        <Canvas
+          camera={{ position: [0, 0, 10] }}
+          gl={{ alpha: true }}
+          style={{
+            width: '100%',
+            height: '100%',
+            background: 'transparent',
+            cursor: isExpanded ? 'default' : 'pointer',
+          }}
+        >
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[1, 1, 1]} intensity={0.5} />
+
+          <ExpandingGlobe isExpanded={isExpanded} />
+
+          <OrbitControls
+            ref={orbitControlsRef}
+            enableDamping
+            dampingFactor={0.05}
+            minDistance={5}
+            maxDistance={15}
+            enableZoom={false}
+            enablePan={false}
+            enabled={!isExpanded}
+          />
+        </Canvas>
       </div>
-}
-<div className={`canvas-wrapper ${isExpanded ? 'expanded' : ''}`}>
-  <Canvas
-    camera={{ position: [0, 0, 10] }}
-    gl={{ alpha: true }}
-    style={{ 
-      width: '100%', 
-      height: '100dvh',  
-      background: 'transparent', 
-      cursor: 'pointer' }}
-  >
-    <ambientLight intensity={0.5} />
-    <directionalLight position={[1, 1, 1]} intensity={0.5} />
-
-    <ForwardedExpandingGlobe
-      ref={expandingGlobeRef}
-      isExpanded={isExpanded}
-      onToggleExpand={reset}
-      onClick={() => setIsExpanded(!isExpanded)}
-    />
-
-    <OrbitControls
-      ref={orbitControlsRef}
-      enableDamping
-      dampingFactor={0.05}
-      minDistance={isExpanded ? 0.5 : 5}
-      maxDistance={15}
-      enableZoom={false}
-      enablePan={false}
-    />
-  </Canvas>
-</div>
     </div>
   );
 }

@@ -85,7 +85,7 @@ export const floorListData = [
     title: 'Floor 10 - MotivMate iOS',
     imagePath: '../Assets/floor10demo.png',
     import: fl10Img,
-    release: 'unreleased',
+    release: 'October 12, 2025',
     number: 10,
     desc: 'Learning Full Stack React Native'
   },
@@ -93,7 +93,7 @@ export const floorListData = [
     title: 'Floor 11 - BMW E24',
     imagePath: '../Assets/floor10demo.png',
     import: fl11Img,
-    release: 'unreleased',
+    release: 'April 12, 2026',
     number: 11,
     desc: 'An old dream car'
   },
