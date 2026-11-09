@@ -381,6 +381,11 @@ font-size: 5rem;
   padding: .5rem 0;
   cursor: pointer;
 }
+.releaseDate.is-placeholder,
+.FLlink.is-placeholder {
+  visibility: hidden;
+  pointer-events: none;
+}
 .floorNavBtn {
   display: none;
   appearance: none;
@@ -805,6 +810,7 @@ a.secondary {
     gap: 0.1rem;
     min-width: 0;
     text-align: center;
+    margin-bottom: 1rem;
   }
   .floorNavBtn {
     display: inline-flex;

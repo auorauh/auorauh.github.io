@@ -387,10 +387,30 @@ export default function Home() {
                 </button>
                 <div className="infoCardMain">
                   <div className={"FLtitle"}>{floorTitle.title}</div>
-                  <i className={"releaseDate"}>{floorTitle.release}</i>
-                  {floorTitle.title === 'Select a floor to begin' ? null : (
-                    <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>
-                  )}
+                  <i
+                    className={`releaseDate${
+                      floorTitle.title === 'Select a floor to begin'
+                        ? ' is-placeholder'
+                        : ''
+                    }`}
+                  >
+                    {floorTitle.release || '\u00a0'}
+                  </i>
+                  <div
+                    className={`FLlink${
+                      floorTitle.title === 'Select a floor to begin'
+                        ? ' is-placeholder'
+                        : ''
+                    }`}
+                    onClick={
+                      floorTitle.title === 'Select a floor to begin'
+                        ? undefined
+                        : toggleExplode
+                    }
+                    aria-hidden={floorTitle.title === 'Select a floor to begin'}
+                  >
+                    VIEW PROJECT
+                  </div>
                 </div>
                 <button
                   type="button"
