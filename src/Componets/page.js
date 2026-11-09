@@ -207,7 +207,7 @@ export default function Home() {
     const isModalTarget = (target) =>
       Boolean(
         target.closest?.(
-          '.aboutPanel, .projectView, .aboutOverlay, .infoCard, .mobileFloorNav'
+          '.aboutPanel, .projectView, .aboutOverlay, .infoCard, .floorNavBtn'
         )
       );
 
@@ -276,7 +276,7 @@ export default function Home() {
   const handleTowerClick = (event) => {
     if (viewProject || viewAbout) return;
     // Ignore clicks that originated on the info card / links.
-    if (event.target.closest('.infoCard, .FLlink, .mobileFloorNav, a, button')) return;
+    if (event.target.closest('.infoCard, .FLlink, .floorNavBtn, a, button')) return;
     const index = pickStackIndex(event.clientY);
     if (index === null) return;
     selectFloorByIndex(index);
@@ -376,31 +376,31 @@ export default function Home() {
             </div>
             {floorTitle.title !== null ? (
               <div className={"infoCard"}>
-                <div className="mobileFloorNav">
-                  <button
-                    type="button"
-                    className="floorNavBtn"
-                    aria-label="Move up a floor"
-                    disabled={activeIndex === 0}
-                    onClick={() => stepFloor(-1)}
-                  >
-                    ▲
-                  </button>
-                  <button
-                    type="button"
-                    className="floorNavBtn"
-                    aria-label="Move down a floor"
-                    disabled={activeIndex === FLOOR_COUNT - 1}
-                    onClick={() => stepFloor(1)}
-                  >
-                    ▼
-                  </button>
+                <button
+                  type="button"
+                  className="floorNavBtn floorNavBtn--up"
+                  aria-label="Move up a floor"
+                  disabled={activeIndex === 0}
+                  onClick={() => stepFloor(-1)}
+                >
+                  ▲
+                </button>
+                <div className="infoCardMain">
+                  <div className={"FLtitle"}>{floorTitle.title}</div>
+                  <i className={"releaseDate"}>{floorTitle.release}</i>
+                  {floorTitle.title === 'Select a floor to begin' ? null : (
+                    <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>
+                  )}
                 </div>
-                <div className={"FLtitle"}>{floorTitle.title}</div>
-                <i className={"releaseDate"}>{floorTitle.release}</i>
-                {floorTitle.title === 'Select a floor to begin' ? null : (
-                  <div className={"FLlink"} onClick={toggleExplode}>VIEW PROJECT</div>
-                )}
+                <button
+                  type="button"
+                  className="floorNavBtn floorNavBtn--down"
+                  aria-label="Move down a floor"
+                  disabled={activeIndex === FLOOR_COUNT - 1}
+                  onClick={() => stepFloor(1)}
+                >
+                  ▼
+                </button>
               </div>
             ) : null}
           </div>

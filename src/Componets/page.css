@@ -381,10 +381,8 @@ font-size: 5rem;
   padding: .5rem 0;
   cursor: pointer;
 }
-.mobileFloorNav {
-  display: none;
-}
 .floorNavBtn {
+  display: none;
   appearance: none;
   border: 1px solid rgba(28, 37, 35, 0.35);
   background: rgba(28, 37, 35, 0.88);
@@ -392,18 +390,21 @@ font-size: 5rem;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 0.85rem;
   line-height: 1;
   cursor: pointer;
   padding: 0;
+  flex: 0 0 auto;
   -webkit-tap-highlight-color: transparent;
 }
 .floorNavBtn:disabled {
   opacity: 0.35;
   cursor: default;
+}
+.infoCardMain {
+  display: contents;
 }
 .closeBtn {
   background-color: #d1d6d5a1;
@@ -778,17 +779,16 @@ a.secondary {
     padding-top: 0;
   }
   .infoCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
+    column-gap: 0.65rem;
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 0.4rem 0.75rem max(0.65rem, env(safe-area-inset-bottom, 0px));
+    padding: 0.45rem 0.65rem max(0.65rem, env(safe-area-inset-bottom, 0px));
     height: auto;
     min-height: 0;
-    gap: 0.15rem;
     pointer-events: auto;
     background-image: url(../Assets/Background.png);
     background-size: cover;
@@ -796,13 +796,23 @@ a.secondary {
     border-radius: 12px 12px 0 0;
     box-shadow: 0 -6px 18px rgba(28, 37, 35, 0.1);
   }
-  .mobileFloorNav {
+  .infoCardMain {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: 1.25rem;
-    margin-bottom: 0.15rem;
-    pointer-events: auto;
+    align-items: center;
+    gap: 0.1rem;
+    min-width: 0;
+    text-align: center;
+  }
+  .floorNavBtn {
+    display: inline-flex;
+  }
+  .floorNavBtn--up {
+    justify-self: start;
+  }
+  .floorNavBtn--down {
+    justify-self: end;
   }
   .floorNavBtn:active {
     transform: scale(0.96);
