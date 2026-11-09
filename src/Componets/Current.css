@@ -500,7 +500,7 @@
     flex-direction: column;
     align-items: flex-start;
     font-size: clamp(1.55rem, 8vw, 2rem);
-    margin-top: 0.35rem;
+    margin-top: 1.35rem;
     margin-bottom: 0.75rem;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -509,7 +509,11 @@
   }
 
   .card {
-    width: min(100%, 16rem);
+    width: min(100%, 13.5rem);
+    min-height: 2.5rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+    border-radius: 12px 0 36px 0;
   }
 
   .bottom {
