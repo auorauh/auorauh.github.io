@@ -660,8 +660,9 @@ a.secondary {
     --floor-lift-step: 2.75;
     --floor-hit-band: 31%;
     --floor-label-size: clamp(0.95rem, 4.2vw, 1.25rem);
-    --info-card-width: min(94vw, 360px);
+    --info-card-width: 100%;
     --explode-distance: 110vh;
+    --header-offset: 3.5rem;
   }
   .header {
     font-size: 1.15rem;
@@ -695,30 +696,45 @@ a.secondary {
   }
 
   .mainSection {
-    height: calc(100svh - 4.25rem);
-    margin-top: 3.5rem;
-    align-items: flex-start;
-    padding-top: 0.5rem;
+    height: calc(100svh - var(--header-offset));
+    max-height: calc(100svh - var(--header-offset));
+    margin-top: var(--header-offset);
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
   }
   .overlayContainer {
-    inset: auto 0 0 0;
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
     height: auto;
-    position: absolute;
+    width: 100%;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-end;
     text-align: center;
-    padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+    padding: 0;
     z-index: 20;
+    order: 2;
+  }
+  .cloudContainer {
+    display: none;
   }
   .cloudImg {
     display: none;
   }
   .baseSection {
+    order: 1;
+    flex: 1 1 auto;
     width: var(--tower-width);
-    height: calc(100svh - 8.5rem);
-    max-height: calc(100svh - 8.5rem);
-    margin-top: 0.5rem;
+    max-width: min(86vw, 320px);
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    margin: 0.35rem auto 0;
+    align-self: center;
   }
   .baseSection::-webkit-scrollbar {
     width: 0;
@@ -733,33 +749,34 @@ a.secondary {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: var(--info-card-width);
+    width: 100%;
+    max-width: none;
     margin: 0;
-    padding: 0.45rem 0.75rem 0.55rem;
+    padding: 0.4rem 0.75rem max(0.55rem, env(safe-area-inset-bottom));
     height: auto;
     min-height: 0;
-    gap: 0.15rem;
+    gap: 0.1rem;
     background-image: url(../Assets/Background.png);
     background-size: cover;
     background-position: bottom;
-    border-radius: 10px 10px 0 0;
+    border-radius: 12px 12px 0 0;
     box-shadow: 0 -6px 18px rgba(28, 37, 35, 0.1);
   }
   .FLtitle {
-    font-size: clamp(0.95rem, 4vw, 1.1rem);
-    line-height: 1.2;
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+    line-height: 1.15;
   }
   .FLlink {
-    margin-top: 0.35rem;
+    margin-top: 0.25rem;
     width: auto;
-    min-width: 7.5rem;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.62rem;
+    min-width: 7rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6rem;
     border-radius: 8px;
   }
   .releaseDate {
-    font-size: 0.75rem;
-    line-height: 1.2;
+    font-size: 0.72rem;
+    line-height: 1.15;
   }
   .rotate {
     /* Center label in the visible roof band of the resting floor slot */
@@ -837,18 +854,14 @@ a.secondary {
   .aboutText {
     font-size: 0.8rem;
   }
-  .baseSection {
-    height: calc(100svh - 8rem);
-    max-height: calc(100svh - 8rem);
-  }
   .rotate {
     transform: translateX(0) translateY(calc(var(--floor-height) * 0.36));
   }
   .infoCard {
-    padding: 0.4rem 0.65rem 0.5rem;
+    padding: 0.35rem 0.6rem max(0.5rem, env(safe-area-inset-bottom));
   }
   .FLtitle {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }
 
