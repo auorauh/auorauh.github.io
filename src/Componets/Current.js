@@ -8,9 +8,11 @@ import 'devicon/devicon.min.css';
 
 function ExpandingGlobe({ isExpanded }) {
   const globeRef = useRef();
-  const { camera } = useThree();
-  const targetScale = isExpanded ? 1.65 : 1;
-  const targetCameraZ = isExpanded ? 7 : 10;
+  const { camera, size } = useThree();
+  const isMobile = size.width <= 600;
+  // Closer camera on mobile so the globe fills the visible frame
+  const targetScale = isExpanded ? (isMobile ? 1.25 : 1.65) : isMobile ? 1.15 : 1;
+  const targetCameraZ = isExpanded ? (isMobile ? 4.6 : 7) : isMobile ? 4.8 : 10;
 
   useFrame(() => {
     if (!globeRef.current) return;
@@ -108,6 +110,40 @@ function LineworkGlobe() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeContent, setActiveContent] = useState(null);
   const orbitControlsRef = useRef();
+  const containerRef = useRef(null);
+
+  // Brave/iOS chrome: size to the *visual* viewport so Return + content
+  // aren't hidden under the URL bar / browser footer.
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return undefined;
+
+    const syncVisualViewport = () => {
+      const vv = window.visualViewport;
+      const height = Math.round(vv ? vv.height : window.innerHeight);
+      const offsetTop = Math.round(vv ? vv.offsetTop : 0);
+      const heightPx = `${height}px`;
+      const topPx = `${offsetTop}px`;
+      // Set on both so position:fixed descendants always resolve the vars
+      root.style.setProperty('--vv-height', heightPx);
+      root.style.setProperty('--vv-top', topPx);
+      document.documentElement.style.setProperty('--vv-height', heightPx);
+      document.documentElement.style.setProperty('--vv-top', topPx);
+    };
+
+    syncVisualViewport();
+    window.addEventListener('resize', syncVisualViewport);
+    window.visualViewport?.addEventListener('resize', syncVisualViewport);
+    window.visualViewport?.addEventListener('scroll', syncVisualViewport);
+
+    return () => {
+      window.removeEventListener('resize', syncVisualViewport);
+      window.visualViewport?.removeEventListener('resize', syncVisualViewport);
+      window.visualViewport?.removeEventListener('scroll', syncVisualViewport);
+      document.documentElement.style.removeProperty('--vv-height');
+      document.documentElement.style.removeProperty('--vv-top');
+    };
+  }, []);
 
   useEffect(() => {
     if (orbitControlsRef.current) {
@@ -140,8 +176,11 @@ function LineworkGlobe() {
     setActiveContent(null);
   };
 
+  const initialCameraZ =
+    typeof window !== 'undefined' && window.innerWidth <= 600 ? 4.8 : 10;
+
   return (
-    <div className="container">
+    <div className="container" ref={containerRef}>
       {!isExpanded ? (
         <div className="overlay">
           <div className="nameCard">
@@ -169,7 +208,9 @@ function LineworkGlobe() {
 
       <div className={`canvas-wrapper ${isExpanded ? 'expanded' : ''}`}>
         <Canvas
-          camera={{ position: [0, 0, 10] }}
+          camera={{
+            position: [0, 0, initialCameraZ],
+          }}
           gl={{ alpha: true }}
           style={{
             width: '100%',
@@ -187,7 +228,7 @@ function LineworkGlobe() {
             ref={orbitControlsRef}
             enableDamping
             dampingFactor={0.05}
-            minDistance={5}
+            minDistance={3.5}
             maxDistance={15}
             enableZoom={false}
             enablePan={false}
