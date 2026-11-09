@@ -375,16 +375,24 @@ export default function Home() {
               <img className="cloudImg" src={cloud} alt="background Cloud img" />
             </div>
             {floorTitle.title !== null ? (
-              <div className={"infoCard"}>
-                <button
-                  type="button"
-                  className="floorNavBtn floorNavBtn--up"
-                  aria-label="Move up a floor"
-                  disabled={activeIndex === 0}
-                  onClick={() => stepFloor(-1)}
-                >
-                  ▲
-                </button>
+              <div
+                className={`infoCard${
+                  floorTitle.title === 'Select a floor to begin'
+                    ? ' infoCard--placeholder'
+                    : ''
+                }`}
+              >
+                {floorTitle.title === 'Select a floor to begin' ? null : (
+                  <button
+                    type="button"
+                    className="floorNavBtn floorNavBtn--up"
+                    aria-label="Move up a floor"
+                    disabled={activeIndex === 0}
+                    onClick={() => stepFloor(-1)}
+                  >
+                    ▲
+                  </button>
+                )}
                 <div className="infoCardMain">
                   <div className={"FLtitle"}>{floorTitle.title}</div>
                   <i
@@ -412,15 +420,17 @@ export default function Home() {
                     VIEW PROJECT
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="floorNavBtn floorNavBtn--down"
-                  aria-label="Move down a floor"
-                  disabled={activeIndex === FLOOR_COUNT - 1}
-                  onClick={() => stepFloor(1)}
-                >
-                  ▼
-                </button>
+                {floorTitle.title === 'Select a floor to begin' ? null : (
+                  <button
+                    type="button"
+                    className="floorNavBtn floorNavBtn--down"
+                    aria-label="Move down a floor"
+                    disabled={activeIndex === FLOOR_COUNT - 1}
+                    onClick={() => stepFloor(1)}
+                  >
+                    ▼
+                  </button>
+                )}
               </div>
             ) : null}
           </div>
