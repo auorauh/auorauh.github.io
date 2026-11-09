@@ -135,6 +135,32 @@ export default function Home() {
     setHoverIndex(stackIndex);
   }, []);
 
+  const scrollFloorIntoView = useCallback((stackIndex) => {
+    const baseEl = baseSectionRef.current;
+    if (!baseEl) return;
+    const first = baseEl.querySelector('.base');
+    if (!first) return;
+
+    const floorHeight = first.offsetHeight;
+    const overlapRatio = stackMetrics.overlap / 100;
+    const step = floorHeight * (1 - overlapRatio);
+    const targetY = first.offsetTop + stackIndex * step;
+    const maxScroll = Math.max(
+      0,
+      first.offsetTop + (STACK_COUNT - 1) * step + floorHeight - baseEl.clientHeight
+    );
+    const nextScroll = targetY - baseEl.clientHeight * 0.3;
+    baseEl.scrollTop = Math.min(maxScroll, Math.max(0, nextScroll));
+  }, [stackMetrics.overlap]);
+
+  const stepFloor = useCallback((direction) => {
+    const current = activeIndex ?? 0;
+    const next = Math.min(FLOOR_COUNT - 1, Math.max(0, current + direction));
+    if (next === current && activeIndex !== null) return;
+    selectFloorByIndex(next);
+    scrollFloorIntoView(next);
+  }, [activeIndex, selectFloorByIndex, scrollFloorIntoView]);
+
   useEffect(() => {
     const baseEl = baseSectionRef.current;
     if (!baseEl) return undefined;
@@ -179,7 +205,11 @@ export default function Home() {
     };
 
     const isModalTarget = (target) =>
-      Boolean(target.closest?.('.aboutPanel, .projectView, .aboutOverlay'));
+      Boolean(
+        target.closest?.(
+          '.aboutPanel, .projectView, .aboutOverlay, .infoCard, .mobileFloorNav'
+        )
+      );
 
     // Route wheel / trackpad scrolling anywhere on the page into the tower.
     const handleWheel = (event) => {
@@ -246,7 +276,7 @@ export default function Home() {
   const handleTowerClick = (event) => {
     if (viewProject || viewAbout) return;
     // Ignore clicks that originated on the info card / links.
-    if (event.target.closest('.infoCard, .FLlink, a, button')) return;
+    if (event.target.closest('.infoCard, .FLlink, .mobileFloorNav, a, button')) return;
     const index = pickStackIndex(event.clientY);
     if (index === null) return;
     selectFloorByIndex(index);
@@ -346,6 +376,26 @@ export default function Home() {
             </div>
             {floorTitle.title !== null ? (
               <div className={"infoCard"}>
+                <div className="mobileFloorNav">
+                  <button
+                    type="button"
+                    className="floorNavBtn"
+                    aria-label="Move up a floor"
+                    disabled={activeIndex === 0}
+                    onClick={() => stepFloor(-1)}
+                  >
+                    ▲
+                  </button>
+                  <button
+                    type="button"
+                    className="floorNavBtn"
+                    aria-label="Move down a floor"
+                    disabled={activeIndex === FLOOR_COUNT - 1}
+                    onClick={() => stepFloor(1)}
+                  >
+                    ▼
+                  </button>
+                </div>
                 <div className={"FLtitle"}>{floorTitle.title}</div>
                 <i className={"releaseDate"}>{floorTitle.release}</i>
                 {floorTitle.title === 'Select a floor to begin' ? null : (
