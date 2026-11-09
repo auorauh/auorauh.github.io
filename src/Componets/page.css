@@ -659,8 +659,8 @@ a.secondary {
     --floor-lift-base: 48;
     --floor-lift-step: 2.75;
     --floor-hit-band: 31%;
-    --floor-label-size: 1.9rem;
-    --info-card-width: min(92vw, 360px);
+    --floor-label-size: clamp(0.95rem, 4.2vw, 1.25rem);
+    --info-card-width: min(94vw, 360px);
     --explode-distance: 110vh;
   }
   .header {
@@ -708,7 +708,7 @@ a.secondary {
     align-items: center;
     justify-content: flex-end;
     text-align: center;
-    padding-bottom: 0.75rem;
+    padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
     z-index: 20;
   }
   .cloudImg {
@@ -716,39 +716,57 @@ a.secondary {
   }
   .baseSection {
     width: var(--tower-width);
-    height: calc(100svh - 11rem);
-    max-height: calc(100svh - 11rem);
+    height: calc(100svh - 8.5rem);
+    max-height: calc(100svh - 8.5rem);
     margin-top: 0.5rem;
   }
   .baseSection::-webkit-scrollbar {
     width: 0;
   }
+  .selection {
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+  }
   .infoCard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: var(--info-card-width);
     margin: 0;
-    padding: 0.75rem 1rem 1rem;
+    padding: 0.45rem 0.75rem 0.55rem;
     height: auto;
+    min-height: 0;
+    gap: 0.15rem;
     background-image: url(../Assets/Background.png);
     background-size: cover;
     background-position: bottom;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 -8px 24px rgba(28, 37, 35, 0.12);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -6px 18px rgba(28, 37, 35, 0.1);
   }
   .FLtitle {
-    font-size: 1.25rem;
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+    line-height: 1.2;
   }
   .FLlink {
-    margin-top: 0.5rem;
+    margin-top: 0.35rem;
+    width: auto;
+    min-width: 7.5rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.62rem;
+    border-radius: 8px;
   }
   .releaseDate {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
   }
   .rotate {
-    transform: translateX(0) translateY(5.75rem);
+    /* Center label in the visible roof band of the resting floor slot */
+    transform: translateX(0) translateY(calc(var(--floor-height) * 0.38));
     letter-spacing: -0.02em;
+    font-size: var(--floor-label-size);
+    line-height: 1.1;
   }
   h1 {
     font-size: 1.5rem;
@@ -811,12 +829,26 @@ a.secondary {
     --tower-width: min(86vw, 280px);
     --floor-height: clamp(92px, 18vh, 140px);
     --floor-lift-base: 36;
+    --floor-label-size: clamp(0.85rem, 4vw, 1.05rem);
   }
   .headerText {
     font-size: 1rem;
   }
   .aboutText {
     font-size: 0.8rem;
+  }
+  .baseSection {
+    height: calc(100svh - 8rem);
+    max-height: calc(100svh - 8rem);
+  }
+  .rotate {
+    transform: translateX(0) translateY(calc(var(--floor-height) * 0.36));
+  }
+  .infoCard {
+    padding: 0.4rem 0.65rem 0.5rem;
+  }
+  .FLtitle {
+    font-size: 0.95rem;
   }
 }
 

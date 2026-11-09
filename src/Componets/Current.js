@@ -144,7 +144,10 @@ function LineworkGlobe() {
     <div className="container">
       {!isExpanded ? (
         <div className="overlay">
-          <div className="nameCard">Trenton Teasdale</div>
+          <div className="nameCard">
+            <span>Trenton</span>
+            <span>Teasdale</span>
+          </div>
           <div className="card" onClick={() => handleCardClick(0)}>
             About Me
           </div>
