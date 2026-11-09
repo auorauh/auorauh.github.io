@@ -10,9 +10,8 @@ function ExpandingGlobe({ isExpanded }) {
   const globeRef = useRef();
   const { camera, size } = useThree();
   const isMobile = size.width <= 600;
-  // Closer camera on mobile so the globe fills the visible frame
-  const targetScale = isExpanded ? (isMobile ? 1.25 : 1.65) : isMobile ? 1.15 : 1;
-  const targetCameraZ = isExpanded ? (isMobile ? 4.6 : 7) : isMobile ? 4.8 : 10;
+  const targetScale = isExpanded ? (isMobile ? 1.4 : 1.65) : isMobile ? 1.35 : 1;
+  const targetCameraZ = isExpanded ? (isMobile ? 6 : 7) : isMobile ? 6.5 : 10;
 
   useFrame(() => {
     if (!globeRef.current) return;
@@ -177,7 +176,7 @@ function LineworkGlobe() {
   };
 
   const initialCameraZ =
-    typeof window !== 'undefined' && window.innerWidth <= 600 ? 4.8 : 10;
+    typeof window !== 'undefined' && window.innerWidth <= 600 ? 6.5 : 10;
 
   return (
     <div className="container" ref={containerRef}>
@@ -228,7 +227,7 @@ function LineworkGlobe() {
             ref={orbitControlsRef}
             enableDamping
             dampingFactor={0.05}
-            minDistance={3.5}
+            minDistance={4}
             maxDistance={15}
             enableZoom={false}
             enablePan={false}
