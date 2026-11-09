@@ -10,8 +10,9 @@ function ExpandingGlobe({ isExpanded }) {
   const globeRef = useRef();
   const { camera, size } = useThree();
   const isMobile = size.width <= 600;
-  const targetScale = isExpanded ? (isMobile ? 1.4 : 1.65) : isMobile ? 1.35 : 1;
-  const targetCameraZ = isExpanded ? (isMobile ? 6 : 7) : isMobile ? 6.5 : 10;
+  // Match desktop framing on mobile (closer Z + larger scale was over-zoomed)
+  const targetScale = isExpanded ? (isMobile ? 1.55 : 1.65) : 1;
+  const targetCameraZ = isExpanded ? (isMobile ? 7.5 : 7) : 10;
 
   useFrame(() => {
     if (!globeRef.current) return;
@@ -175,8 +176,7 @@ function LineworkGlobe() {
     setActiveContent(null);
   };
 
-  const initialCameraZ =
-    typeof window !== 'undefined' && window.innerWidth <= 600 ? 6.5 : 10;
+  const initialCameraZ = 10;
 
   return (
     <div className="container" ref={containerRef}>
