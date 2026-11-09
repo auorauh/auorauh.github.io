@@ -653,6 +653,8 @@ a.secondary {
 @media (max-width: 600px) {
   .page {
     background-size: cover;
+    min-height: 100dvh;
+    height: 100dvh;
     --tower-width: min(78vw, 320px);
     --floor-height: clamp(100px, 20vh, 160px);
     --floor-overlap: 69;
@@ -696,19 +698,24 @@ a.secondary {
   }
 
   .mainSection {
-    height: calc(100svh - var(--header-offset));
-    max-height: calc(100svh - var(--header-offset));
+    height: calc(100dvh - var(--header-offset));
+    max-height: calc(100dvh - var(--header-offset));
     margin-top: var(--header-offset);
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
     padding-top: 0;
     display: flex;
     flex-direction: column;
   }
   .overlayContainer {
-    position: relative;
-    inset: auto;
-    flex: 0 0 auto;
+    /* Pin to the real visual viewport bottom (Brave/iOS chrome-safe) */
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: auto 0 0 0;
+    flex: none;
     height: auto;
     width: 100%;
     flex-direction: column;
@@ -716,8 +723,8 @@ a.secondary {
     justify-content: flex-end;
     text-align: center;
     padding: 0;
-    z-index: 20;
-    order: 2;
+    z-index: 30;
+    pointer-events: none;
   }
   .cloudContainer {
     display: none;
@@ -726,7 +733,6 @@ a.secondary {
     display: none;
   }
   .baseSection {
-    order: 1;
     flex: 1 1 auto;
     width: var(--tower-width);
     max-width: min(86vw, 320px);
@@ -735,6 +741,9 @@ a.secondary {
     min-height: 0;
     margin: 0.35rem auto 0;
     align-self: center;
+    /* Keep foundation scrollable above the fixed title card */
+    padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
   }
   .baseSection::-webkit-scrollbar {
     width: 0;
@@ -752,10 +761,11 @@ a.secondary {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 0.4rem 0.75rem max(0.55rem, env(safe-area-inset-bottom));
+    padding: 0.4rem 0.75rem max(0.65rem, env(safe-area-inset-bottom, 0px));
     height: auto;
     min-height: 0;
     gap: 0.1rem;
+    pointer-events: auto;
     background-image: url(../Assets/Background.png);
     background-size: cover;
     background-position: bottom;
