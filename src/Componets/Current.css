@@ -454,7 +454,7 @@
   }
 
   .portPanel {
-    top: max(8dvh, calc(env(safe-area-inset-top) + 0.5rem));
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -462,11 +462,9 @@
     width: 100%;
     height: auto;
     max-height: none;
-    border-radius: 16px 16px 0 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    padding: 1.1rem 1.15rem max(1.25rem, env(safe-area-inset-bottom));
+    border-radius: 0;
+    border: none;
+    padding: max(1.1rem, env(safe-area-inset-top)) 1.15rem max(1.25rem, env(safe-area-inset-bottom));
   }
 
   .portPanelBody,
@@ -518,7 +516,7 @@
   }
 
   .portPanel {
-    top: max(7dvh, calc(env(safe-area-inset-top) + 0.35rem));
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -526,11 +524,9 @@
     width: 100%;
     height: auto;
     max-height: none;
-    border-radius: 16px 16px 0 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    padding: 1rem 1rem max(1.25rem, env(safe-area-inset-bottom));
+    border-radius: 0;
+    border: none;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.25rem, env(safe-area-inset-bottom));
   }
 
   .portPanelHeader {
