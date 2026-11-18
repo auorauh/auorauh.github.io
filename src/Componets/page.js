@@ -25,6 +25,7 @@ function readCssNumber(styles, name, fallback) {
 
 export default function Home() {
   const [portfolio, setPortfolio] = useState(false);
+  const [portEntering, setPortEntering] = useState(false);
   const [showPort] = useState('flex');
   const [viewProject, setViewProject] = useState(false);
   const [viewAbout, setViewAbout] = useState(false);
@@ -47,7 +48,14 @@ export default function Home() {
   const baseSectionRef = useRef(null);
   const hoverIndexRef = useRef(null);
   const lastPointerYRef = useRef(null);
+  const portEnterTimerRef = useRef(null);
   const activeIndex = hoverIndex ?? selectedIndex;
+
+  useEffect(() => () => {
+    if (portEnterTimerRef.current) {
+      window.clearTimeout(portEnterTimerRef.current);
+    }
+  }, []);
 
   const syncStackMetrics = useCallback(() => {
     const el = baseSectionRef.current;
@@ -113,12 +121,26 @@ export default function Home() {
     if (stackIndex === null || stackIndex === undefined) return;
     if (hoverIndexRef.current === stackIndex) return;
 
+    // Drop the slide-in stagger as soon as the user starts hovering floors.
+    if (portEnterTimerRef.current) {
+      window.clearTimeout(portEnterTimerRef.current);
+      portEnterTimerRef.current = null;
+    }
+    setPortEntering(false);
+
     hoverIndexRef.current = stackIndex;
     setHoverIndex(stackIndex);
 
     const floorNumber = FLOOR_NUMBERS_REV[stackIndex];
     const floor = floorListData[floorNumber - 1];
-    if (floor) setTitle(floor);
+    if (floorNumber !== undefined) {
+      setTowerFloor(floorNumber);
+    }
+    if (floor) {
+      setTitle(floor);
+      // Keep VIEW PROJECT synced with the previewed floor.
+      setProjectData(floor);
+    }
   }, []);
 
   const selectFloorByIndex = useCallback((stackIndex) => {
@@ -133,6 +155,7 @@ export default function Home() {
     setProjectData(floor);
     setSelectedIndex(stackIndex);
     setHoverIndex(stackIndex);
+    setTowerFloor(floorNumber);
   }, []);
 
   const scrollFloorIntoView = useCallback((stackIndex) => {
@@ -207,7 +230,7 @@ export default function Home() {
     const isModalTarget = (target) =>
       Boolean(
         target.closest?.(
-          '.aboutPanel, .projectView, .aboutOverlay, .infoCard, .floorNavBtn'
+          '.aboutPanel, .projectView, .projectOverlay, .aboutOverlay, .infoCard, .floorNavBtn'
         )
       );
 
@@ -282,15 +305,31 @@ export default function Home() {
     selectFloorByIndex(index);
   };
 
-  function towerFloor(index) {
-    setTowerFloor(index);
-  }
-
   function enterPortfolio() {
     const newPortfolio = !portfolio;
     setPortfolio(newPortfolio);
     setX(newPortfolio);
-    setTitle({ title: null });
+    setHoverIndex(null);
+    setSelectedIndex(null);
+    hoverIndexRef.current = null;
+    setTowerFloor(0);
+    setTitle({ title: 'Select a floor to begin' });
+
+    if (portEnterTimerRef.current) {
+      window.clearTimeout(portEnterTimerRef.current);
+      portEnterTimerRef.current = null;
+    }
+
+    // Keep the slide-in cascade, then match main-tower hover timing.
+    if (newPortfolio) {
+      setPortEntering(true);
+      portEnterTimerRef.current = window.setTimeout(() => {
+        setPortEntering(false);
+        portEnterTimerRef.current = null;
+      }, 2600);
+    } else {
+      setPortEntering(false);
+    }
   }
 
   function setX(toggle) {
@@ -306,20 +345,35 @@ export default function Home() {
   }
 
   const toggleExplode = () => {
-    setExplodeView((prev) => !prev);
-    setViewProject((prev) => !prev);
+    setViewProject((prev) => {
+      const next = !prev;
+      // Keep the selected floor lift; don't explode the tower apart —
+      // that left a broken "expanded" stack behind the modal.
+      if (!next) setExplodeView(false);
+      return next;
+    });
   };
 
   const clearHover = () => {
-    hoverIndexRef.current = null;
-    setHoverIndex(null);
-    if (selectedIndex !== null) {
-      const floorNumber = FLOOR_NUMBERS_REV[selectedIndex];
+    // Leaving the tower (e.g. to click VIEW PROJECT) should keep the floor
+    // expanded — commit the last preview as the sticky selection.
+    const stackIndex = hoverIndexRef.current ?? selectedIndex;
+    if (stackIndex !== null && stackIndex !== undefined) {
+      const floorNumber = FLOOR_NUMBERS_REV[stackIndex];
       const floor = floorListData[floorNumber - 1];
-      if (floor) setTitle(floor);
+      if (floor) {
+        setSelectedIndex(stackIndex);
+        setProjectData(floor);
+        setTitle(floor);
+        hoverIndexRef.current = stackIndex;
+        if (floorNumber !== undefined) setTowerFloor(floorNumber);
+      }
     } else {
+      hoverIndexRef.current = null;
       setTitle({ title: 'Select a floor to begin' });
+      setTowerFloor(0);
     }
+    setHoverIndex(null);
   };
 
   const getImageTranslate = (index, restingOffset) => {
@@ -357,14 +411,22 @@ export default function Home() {
       </Helmet>
       <div className="page">
         <div className={"header"}>
-          {portfolio ? (
-            <div className="headerText" onClick={enterPortfolio}>LOST TOWER INC</div>
-          ) : (
-            <div className="headerText">SIXTY FOUR  FLOORS</div>
-          )}
-          <div className="rightHeader" onClick={openAbout}>
-            <p className="aboutText">What is 64Floors?</p>
-            <img className="icon" src={logo} alt="site logo" />
+          <div className="headerText">
+            {portfolio ? 'LOST TOWER INC' : 'SIXTY FOUR  FLOORS'}
+          </div>
+          <div className="rightHeader">
+            <button
+              type="button"
+              className="towerSwitchBtn"
+              onClick={enterPortfolio}
+              aria-pressed={portfolio}
+            >
+              {portfolio ? '64 Floors' : 'Lost Towers'}
+            </button>
+            <button type="button" className="aboutEntry" onClick={openAbout}>
+              <span className="aboutText">What is 64Floors?</span>
+              <img className="icon" src={logo} alt="" aria-hidden="true" />
+            </button>
           </div>
         </div>
         <div className={"mainSection"}>
@@ -489,15 +551,15 @@ export default function Home() {
                   </div>
                   <img
                     key={index + 'port'}
-                    className={"portImg"}
+                    className={`portImg${portEntering ? ' portImg--entering' : ''}`}
                     src={portImg}
                     alt=""
                     aria-hidden="true"
-                    onClick={() => { towerFloor(floorNumber); }}
+                    onClick={() => { setTowerFloor(floorNumber); }}
                     style={{
                       zIndex: baseTransforms.length - index + 1,
                       transform: `translateY(${imageTranslate}) translateX(${leftImgX})`,
-                      transition: `transform 0.8s ease ${(floorNumber || 0) * 175}ms`,
+                      transitionDelay: portEntering ? `${(floorNumber || 0) * 175}ms` : '0ms',
                       display: `${showPort}`,
                     }}
                   />

@@ -14,6 +14,7 @@ export const floorListData = [
     imagePath: '../Assets/floor3.png',
     release: 'July 6, 2021',
     import: '',
+    video: 'https://www.youtube.com/embed/UkQuyxFu4Ik',
     number: 1,
     desc: 'Only Available on Instagram'
   },
@@ -22,6 +23,7 @@ export const floorListData = [
     imagePath: '../Assets/floor3.png',
     release: 'August 22, 2021',
     import: '',
+    video: 'https://www.youtube.com/embed/NfpqBYbSGF0?start=24',
     number: 2,
     desc: 'Only Available on Instagram'
   },
@@ -31,7 +33,9 @@ export const floorListData = [
     import: fl3Img,
     release: 'December 30, 2021',
     number: 3,
-    desc: 'You are here. This IS the "The Site".'
+    desc: 'You are here. This IS the "The Site".',
+    link: 'https://www.youtube.com/watch?v=joFfvZL686E',
+    linkLabel: 'Youtube Breakdown',
   },
   {
     title: 'Floor 4 - D.O.A',
