@@ -183,10 +183,10 @@ export const portContent = [
     projects: [
       { name: '64 Floors', href: 'https://64floors.com', note: 'Creative art project' },
       { name: 'Access to the Internet', href: 'https://accesstotheinternet.com', note: 'Music / media' },
-      { name: 'Everest Peak Construction', href: 'https://everestpeakconstruction.com', note: 'Business site' },
       { name: 'Viddy Studio', href: 'https://viddystudio.com', note: 'Studio site' },
-      { name: "That's Valid", href: 'https://thats-valid.vercel.app', note: 'Web app' },
       { name: 'Freedom Flyers', href: 'https://freedomflyers.co', note: 'Brand site' },
+      { name: 'Apple Shift Q', href: 'https://appleshiftq.com', note: 'Web project' },
+      { name: 'Connecting Creators', href: 'https://connecting-creators.com', note: 'Web project' },
     ],
   },
   {
