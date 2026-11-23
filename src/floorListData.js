@@ -43,7 +43,9 @@ export const floorListData = [
     import: fl4Img,
     release: 'Janurary 14, 2022',
     number: 4,
-    desc: '6 Song EP : ACCESSTOTHEINTERNET'
+    desc: '6 Song EP : ACCESSTOTHEINTERNET',
+    link: 'https://youtu.be/vXPv0dpZCc8',
+    linkLabel: 'Youtube Breakdown',
   },
   {
     title: 'Floor 5 - Three Paintings',
