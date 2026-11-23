@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -179,6 +180,21 @@ function LineworkGlobe() {
   const initialCameraZ = 10;
 
   return (
+    <>
+    <Helmet>
+      <title>Trenton Teasdale — Portfolio</title>
+      <meta
+        name="description"
+        content="Portfolio of Trenton Teasdale: about, skills, projects, and contact."
+      />
+      <link rel="canonical" href="https://64floors.com/#/portfolio" />
+      <meta property="og:title" content="Trenton Teasdale — Portfolio" />
+      <meta
+        property="og:description"
+        content="Portfolio of Trenton Teasdale: about, skills, projects, and contact."
+      />
+      <meta property="og:url" content="https://64floors.com/#/portfolio" />
+    </Helmet>
     <div className="container" ref={containerRef}>
       {!isExpanded ? (
         <div className="overlay">
@@ -236,6 +252,7 @@ function LineworkGlobe() {
         </Canvas>
       </div>
     </div>
+    </>
   );
 }
 

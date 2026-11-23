@@ -397,17 +397,19 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>64 Floors – Creative Art Project</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="../Assets/64.png" />
+        <title>64 Floors</title>
         <meta
           name="description"
-          content="64 Floors is an artistic journey through 64 unique creative spaces, each representing a different art style and mood."
+          content="64 Floors is a creative project by Trenton Teasdale. Each floor is its own artistic challenge and a public exhibit, one floor at a time."
         />
-        <meta name="keywords" content="64 Floors, art project, creative series, Instagram art" />
-        <meta property="og:title" content="64 Floors - Creative Art Project" />
-        <meta property="og:description" content="Explore 64 unique floors of creativity." />
-        <meta property="og:image" content="https://64floors.com/static/media/Base.37372380a2b4afafec1d.png" />
-        <meta property="og:url" content="https://64floors.com" />
+        <link rel="canonical" href="https://64floors.com/" />
+        <meta property="og:title" content="64 Floors" />
+        <meta
+          property="og:description"
+          content="One building. Sixty-four creative challenges. Explore the floors of Trenton Teasdale’s ongoing art project."
+        />
+        <meta property="og:url" content="https://64floors.com/" />
+        <meta property="og:image" content="https://64floors.com/icon.png" />
       </Helmet>
       <div className="page">
         <div className={"header"}>
